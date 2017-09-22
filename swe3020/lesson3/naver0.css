@@ -1,0 +1,32 @@
+body{margin:0;}
+/* text-align은 인라인요소와 텍스트요소한테만 설정해주는 것, 블록요소를 가운데정렬하기 위해서는 본인 스스로 마진을 통해 조정해야함 */
+.top{
+}
+.top .quickmenu {
+    margin:10px 0 30px 0;
+    font-size:11px;
+    color:#999;
+    text-align: right;
+}
+.top .search {
+    margin-bottom:30px;
+}
+.top h1 {
+    display:inline;
+}
+.top h1 img {
+    width:150px;
+    height:65px;
+}
+.menu{
+    border-top:1px solid #aaa;
+    border-bottom:1px solid #aaa;
+}
+.contents{
+    background:#ddd;
+}
+.centerbox{
+    width:965px;
+    background:#fff;
+    margin:0 auto 0 auto;
+}

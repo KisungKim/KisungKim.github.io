@@ -1,4 +1,17 @@
 <html>
     <head></head>
-    <body></body>
+    <body style="padding:50px">
+        <div style="position:absolute;width:100px;height:100px;background:red"></div>
+        <!-- 포지션 앱솔루투의 탑, 레프트를 주지 않으면 그 기본값은 스태틱과 같다 -->
+        <div style="position:absolute;top:0;right:0;width:100px;height:100px;background:red"></div>
+        <div style="position:absolute;left:100;top:100;
+                    width:500px;height:500px;background:green">
+            <div style="">
+                <!-- 스태틱이 아닌 첫번째 부모를 만나야 영향을 받는다 -->
+                <div style="position:absolute;left:50;top:50;width:20;height:20;background:#caa"></div>        
+                
+            </div>
+        </div>
+        <!-- 엑셀로 만들고 ctrl+d 나머지를 ctrl+h로 탭을 모두바꾸기 -->
+    </body>
 </html>
