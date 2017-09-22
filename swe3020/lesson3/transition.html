@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <style>
+        .test {
+            position:relative;top:0;left:0;display:inline-block;
+            width:100px;height:100px;background:yellow;transition:all 0.3s
+        }
+        .test:hover {
+            top:10px;left:10px;
+            background: red;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="test"></div>
+            <!-- 존재하지 않는 경우에 가상의 셀렉터?? 의사셀렉터 
+                엘리먼트는 같지만 가상의 셀렉터: ex 마우스가 오버되었을때, 체크박스일때 -->
+            <!--위 트랜지션이 적용되기 위해서는 위 test 클래스에 꼭 기준값이 들어가야 한다 -->
+        <div class="test"></div>
+        <div class="test"></div>
+        <br />
+        <div class="test"></div>
+        <div class="test"></div>
+    </body>
+</html>
+
+
