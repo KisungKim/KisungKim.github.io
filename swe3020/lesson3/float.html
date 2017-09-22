@@ -1,0 +1,22 @@
+<html>
+    <head></head>
+    <body>
+        <div style="height:50px;background:#aaa"></div>
+        <div style="width:300px;height:300px;float:left;margin-left:300px;background:rgba(255, 0, 0, 0.5)"></div>
+        <div style="width:300px;height:300px;float:right;background:rgba(255, 255, 0, 0.5)"></div>
+        <!-- <div style="width:300px;height:300px;float:left;background:rgba(255, 0, 255, 0.5)"></div> -->
+        <div style="width:300px;height:300px;float:right;background:rgba(255, 100, 0, 0.5)"></div>
+        
+
+        1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5
+        <!-- float의 경우 아래에 있는 것들에게만 영향을 준다(떠있다) + float박스안에는 부모자식상관없이 인라인이 들어올 수 없다 -->
+        <div style="height:50px;background:#caa">1234</div>
+        <div style="position:relative;left:25px;top:25px;height:50px;background:#aca">123</div>
+        <!-- relative는 static다음의 후처리라는 것을 볼 수 있다 -->
+        <div style="height:50px;background:#aac">12</div>
+        <span>1</span>
+    </body>
+</html>
+
+
+

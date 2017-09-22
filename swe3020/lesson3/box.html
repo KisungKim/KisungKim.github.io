@@ -1,0 +1,33 @@
+<!-- 박스모델 153p에서 css는 시계방향으로 돈다 -->
+<html>
+    <head></head>
+    <!-- 바디 자체가 마진을 기본적으로 가지고 있다는 것을 볼 수 있다 -->
+    <body style="padding:0 50px 0 50px">
+        <div style="height:50px;background:red"></div>
+        <div style="margin:10px 20px 50px 10px;height:50px;background:blue"></div>
+        <div style="height:50px;background:red"></div>
+        <div style="border:3px solid #000;height:100px;margin-top:100px"></div>
+        <!-- 보더박스와 컨텐츠박스 지정 -->
+        <div style="border:3px solid #000;box-sizing:border-box;
+                    height:100px;margin-top:100px"></div>
+         
+
+<!-- 포지션 모델 198p-->
+<!-- position : static, absolute, relative, fixed -->
+<!-- absolute : 절대좌표, 어디가 기준인가 : static을 제외한 absolute의 부모가 기준이다 -->
+<!-- static모델 : block : 위 블록을 연습한것과 관련, inline, float : 자동배치 : 컨텐츠가 늘어나도 배치가 알아서 잘된다, 하지만 원하는 위치에 넣기 힘든 단점이있다-->
+        <!-- block - width, height -->
+        <!-- inline-block -->
+        <!-- inline - auto(width와 height가 안먹고 컨텐츠의 크기를 늘리는 방법밖에 없다/ 혹은 인라인블록을 써주면 된다) -->
+        <span style="background:yellow;display:inline-block;height:50px;width:100px">b</span>
+        <span style="background:green;height:50px;width:100px">a</span>
+        <span style="background:green;height:50px;width:100px">a</span>
+        <span style="background:green;height:50px;width:100px">a</span>
+        <span style="background:green;height:50px;width:100px">a</span>
+        <span style="background:green;height:50px;width:100px">a</span>
+        <span style="background:green;height:50px;width:100px">a</span>
+        
+
+
+    </body>
+</html>
