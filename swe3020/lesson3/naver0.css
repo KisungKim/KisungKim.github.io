@@ -45,6 +45,31 @@ body{margin:0;}
     border-top:1px solid #aaa;
     border-bottom:1px solid #aaa;
 }
+.menu .ul1{
+    position: relative;
+    width:400px;
+    padding:10px 0 10px 6px;
+    margin-top:0px;
+    font-size:14px;
+    font-weight:bold;
+    color:#6b6;
+    list-style:none;
+}
+.menu .ul2{
+    position: relative;
+    float:left;
+    padding:10px 0 10px 6px;
+    margin-top:0px;
+    font-size:14px;
+    font-weight:bold;
+    color:#000;
+    list-style:none;
+}
+.menu .icon{
+    float: left;
+    padding-left:5px;
+}
+
 .contents{
     background:#ddd;
 }
@@ -52,4 +77,8 @@ body{margin:0;}
     width:965px;
     background:#fff;
     margin:0 auto 0 auto;
+}
+
+.ul {
+    list-style: none;
 }

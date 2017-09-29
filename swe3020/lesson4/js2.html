@@ -1,0 +1,123 @@
+<html>
+    <head></head>
+    <body>
+
+
+        <script>
+            // 제어문 : if문, if 공백포함가능 (식) 문;
+            var a = 3;
+            if(a>1) console.log('greater than 1');
+            if (a > 2)     console.log('greater then 2');
+            // 문법상 중괄호가 필요한 것이 아닌 중문을 쓰려고 쓰는 것이다.
+            if (a>2.5) {
+                console.log('greater then 2.5');
+            }
+            if(a>5)console.log('greater than..');console.log('greater than..2');
+            // 문법상 enter이후에는 자동으로 ; 삽입하는 기능이 있기 때문에..
+            if(a>0)
+            console.log('test1'); //은 아무일도 일어나지 않는다
+            if(a>0
+            )console.log('test2'); //는 가능하다
+            else
+            console.log('test3'); //도 마찬가지
+            if(a>3)console.log('test4');else console.log('test5'); //는 가능
+
+            //실제로 else if문의 진행은..(왜느린지 설명이 가능)
+            if(a>1) console.log('over 1');
+            else if(a>2); // 는 아래와 같다 
+            
+            if(a>1) console.log('over 1');
+            else {
+                if (a>2) console.log('over 2');
+                else {
+                    if(a>3) console.log('over 3');
+                }
+            }
+
+            //while 문
+            var i = 20;
+            while(i--) console.log(i);
+            console.log(i);
+
+            // falsy : false, 0, '', "", null, undefined(ex 리턴값이 없는 함수), NaN
+            // 이것을 제외하면 truethy
+
+            // for문
+            // 식1 : 일반적인 식이지만 선언문이 올 수 있다.
+            // 식2 : truty판정
+            // 식3 : for의 문이 실행된 후 수행되는 식
+            // case 1
+            var i;
+            for(i=0;i<10;i++) {
+                console.log(i);
+            }
+            // case 2
+            for(var j =0;j<10;j++) {
+                console.log(j);
+            }
+
+            //총정리하면 다음이 가능하다
+            if(a>2) for(var k=0;k<10;k++) console.log(k);
+
+            // undefined, null구문
+            var k1 = null;
+            var k2 = undefined;
+            var k3; // undefined
+
+            // 자바스크립트의 연산자 : 완전항등비교연산자 : 내부에 형을 따로 갖고 있기 때문에 이것이 필요하다
+            //  === ,  !==
+            // 이것과 관련해서 단항연산자 또한 내부에서 바꾸려고 노력한다... var a = "k";-a; -> NaN error
+            var a3 = "abc", a4 = 123, a5 = true;
+            console.log(typeof a3, typeof a4, typeof a5);
+            // 자바스크립트의 단항연산자 :  ex typeof, void(무조건 undefined로 바꿈)
+            //  ex 0 == "0"  -> true
+            //  ex true == "true" -> false
+            //  그러므로 헷갈리기 때문에 수업에서 두개짜리 연산자는 쓰지 않는걸로..
+            // literal : 더이상 쪼갤수없는 값의 표현 : ex 33은 숫자리터럴
+
+            // 자바스크립트의 primitive type : 복사가 가능하다
+            // String Number Boolean null undefined
+
+            // 자바스크립트중에서 primitive type이 아닌 경우 : 오브젝트(참조)
+
+            // 오브젝트이면서도 리터럴을 갖는 경우가 있다
+            // var a = new Object();
+            // a.key1 = 3;a.key2 = 4;와
+            // var a = {};는 같다 --> 파이썬의 단축표현과 비슷하다고 생각.
+            // {} 1. 중문 2. 오브젝트리터럴 3. 함수리터럴....
+            // 오브젝트리터럴예시
+            var o1 = new Object();
+            o1.name = 'hika';
+            o1.role = 'tutor';
+            console.log(o1);
+            var o2 = {name:'h', role:'student'};
+            console.log(o2);
+            // 배열리터럴 예시
+            var arr1 = new Array();
+            arr1[0] = 3;
+            arr1[1] = 5;
+            console.log(arr1);
+            var arr2 = [10, 20];
+            console.log(arr2);
+            // 함수리터럴 예시  funcion 함수이름선택 (인자, 인자...){문}
+            var f1 = function double(f){return f*2;};
+            console.log(f1(5))
+            var f2 = function(f, v){return f(v);};
+            console.log(f2(f1, 5));
+
+            //예시
+            var farr = [
+                function double(v){return v*2;},
+                function triple(v){return v*3;},
+                function q(v){return v*v;}
+            ];
+            var executor = function(f, v){
+                return f(v);
+            };
+            for (var i = 0, j = farr.length; i<j; i++) {
+                console.log(executor(farr[i], 10));
+            }
+
+        </script>
+    </body>
+</html>
