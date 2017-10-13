@@ -1,0 +1,69 @@
+<html>
+    <head></head>
+    <body>
+        <script>
+        //프로토타입 prototype
+        //클래스 : 모든 함수는 new와 함께 생성자를 만드는 함수를 생성할 수도 있다
+        //생성자 - 그냥 함수다
+        var Student = function(name, grade) {
+            if (this instanceof Student) {
+            //필드선언이 굳이 필요없다
+            this.name = name;
+            this.grade = grade;
+            //메서드선언은?? == 
+            // this.display = function() {
+            //     console.log(this.name + "::" + this.grade);
+            // };
+            //하지만 이러면 용량을 너무 많이 잡아먹음 ; 메소드 돌려쓰기가 안된다. 그래서
+            //자바스크립트 스펙 자체에 프로토타입이라는 키워드가 존재한다.
+            } else {
+                return new Student(name, grade);
+            }
+        };
+        //생성자함수에 넣어주는 것이 아니라 생성자함수의 프로토타입에 넣어준다는 의미다.
+        
+        Student.prototype = new Person();
+        Student.prototype.display = function() {
+                console.log(this.name + "::" + this.grade);
+            };
+        // 이제 인스턴스가 많아져도 상관이 없음
+        // 그렇다면 자바에서 메소드 상속은 어떻게 할까??
+        // 클래스의 스ㅌㅐ틱메소드의 경우 생성자함수의 속성에다 그냥 집어넣으면 된다.
+        // ex Student.action = function() {} 처럼 만들면 된다.
+
+        // =======================
+        // 상속에 대한 설명
+        // class Extended Extends Base는 아래와 같다
+        // var Base = function(){}
+        // var Extended = function(){}
+        // Extended.prototype = new Base();
+        // =======================
+
+        // Student("hika", 1);
+        // console.log(name, grade);
+        //new를 선언하지 않고 그냥 호출했기 때문에 전역변수 name, grade라고 할 수 있다
+
+        //위처럼 다시 보완했을 때..
+        var st1 = Student("길동", 2);
+        console.log(st1.name, st1.grade);
+
+        //단지 new를 붙여서 사용하면 생성자로 작동하고 그냥 호출하면 함수로 작동할 뿐
+        var student = new Student("hika", 1);
+        // console.log(name, grade); // 따라서 이 line은 죽어버린다.
+        // new를 붙여주었다면 그 인스턴스의 네임과 그레이드로 바뀌기 때문에
+        console.log(student);
+        console.log(student instanceof Student);
+        console.log(student.display());
+        //다른패턴에 적용시킬 수도 있다
+        /*
+        var a = new Array();
+        var b = Array();
+        var c = new Date();
+        var d = Date();
+        ...
+        */
+
+
+
+        </script></body>
+</html>

@@ -1,0 +1,128 @@
+<html>
+<head>
+
+</head>
+<body>
+<script>
+// 자바스크립트의 배열은 오브젝트의 응용이라고 할 수 있다.(자바와 다르다)
+var arr=[];
+console.log(arr.length);
+arr[100] = 10;
+console.log(arr.length);
+// 오브젝트 성격임을 증명
+arr.abc = "abc";
+arr["100"] = 20;
+//오브젝트에서 속성지원하는 것과 동일하게 작동한다
+// 즉 메모리는 2개만 차지하고 length는 101개인 경우가 가능하다
+console.log(arr.abc, arr[100]);
+
+//**배열관련 메소드(오브젝트에서는 불가)
+//오브젝트가 아닌 배열을 사용하는 이유 : 개별원소보다는 자체의 class에 관심이 있기 때문
+// 따라서 자체 loop 메소드 또한 내장하고있다?()
+var arr2 = [100, 50, 1, 4, 5];
+var compareTo = function(a, b) {
+    if(a>b) return 1;
+    else if (a==b) return 0;
+    else return -1;
+};
+arr2.sort(); // 사전식 정렬
+console.log(arr2);
+// 그래서 사전식 정렬말고 함수를 이용한다면?
+// 자바스키립트doc 내의 sort메소드를 외워야한다
+arr2.sort(compareTo);
+console.log(arr2);
+// 예를 들어 doc을 보면 이렇게 생겼다..
+// var explaneSort = function(f) {
+//     for (var i=0;i<arr2.length;i++) {
+//         var a = arr2[i];
+//         for (var j=0;j<arr2.length;i++) {
+//             if (i==j) continue;
+//             var b = arr2[j];
+//             if (f(a, b)==1) {
+
+//             } else if (f(a, b)==0) {
+
+//             } else {
+
+//             }
+//         }
+//     }
+// }
+
+//stack
+arr2.push(1, 2, 3, 4, 5, 6)
+console.log(arr2);
+arr2.pop();
+arr2.pop();
+arr2.pop();
+arr2.pop();
+console.log(arr2);
+
+//queue(push는 같다)
+arr2.shift();
+console.log(arr2);
+
+var sum = 0;
+for (var i=0;i<arr2.length;i++) {
+    sum+= arr2[i];
+}
+console.log(sum);
+
+//도우미 메소드사례 :: 배열은 무조건 for을 부르지만 그 실수를 방지하기 위해서.. 메소드를 외워야한다
+//함수는 값이라는 말이 여기서 잘 나타난다.
+sum =0;
+arr2.forEach(function(v, index){
+    console.log(v, index);
+    sum+=v;
+});
+//함수리터럴이라는 의미는 function(){~} 까지가 해당, 즉 이를 리터럴로 받는다
+// 1급객체의 조건 : 변수할당가능, 인자로 받을수 있음, 리턴값으로 가능 
+console.log(sum);
+
+//forEach는 어떻게 생겼을까..
+// var forEachMethod = function(f) {
+//     for (var i=0;i<arr2.length;i++) {
+//         f(arr2[i], i);
+//     }
+// };
+
+//스코프 scope - 식별자의 이름을 인식할 수 있는 범위
+//함수밖에 스코프를 만들지 않는다
+//함수를 만들면 지역변수와 인자를 인식 :: 스코프에 들어온다
+//그렇다면 함수밖의 함수는?
+// ex var arr = []; 의 경우 자동적으로 전역함수소속이라고 할 수 있다 ;; 함수가 아닌것은 없다.
+// 따라서 76line에서 sum을 찾을 때 자기를 감싸는 함수의 식별자를 찾게 된다.
+// 스코프의 쉬운샘플
+var ga = 100, gb = 200;
+var outer = function(oa, ob) {
+    var ola = oa * 2, olb = ob * 2;
+    var inner = function(ia, ib) {
+        var ila = ia * 2, ilb = ib * 2;
+        console.log('oa', oa, 'ob', ob
+                   ,'ola', ola, 'olb', olb
+                   ,'ia', ia, 'ib', ib
+                   ,'ila', ila, 'ilb', ilb
+                   ,'ga', ga, 'gb', gb);
+                   // 만약에 inner2를 만들어 병행구조라면 그 안의 인자는 식별할 수 없다
+    };
+    inner(ola, olb);
+};
+outer(1, 2);
+
+//스코프 응용2
+var check = 100;
+var outer2 = function() {
+    var check = 50;
+    var inner = function() {
+        var check = 10;
+        console.log(check);
+    }
+    inner();
+}
+outer2();
+
+
+
+</script>
+</body>
+</html>

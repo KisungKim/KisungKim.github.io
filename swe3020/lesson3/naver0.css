@@ -112,13 +112,7 @@ body{margin:0;}
     background-color:#f2f4f7
 }
 
-.castSection .castHead {
-    background-color:#fff;
-    border:2px solid #aaa;
-    margin-top:10px;
-    font-size:13px;
-}
-.castSection .castMain {
+.castSection .castHead, .castMain {
     background-color:#fff;
     border:2px solid #aaa;
     margin-top:10px;

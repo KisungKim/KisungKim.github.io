@@ -1,0 +1,81 @@
+<!-- dom = document(1장의 html를) object(오브젝트의 특성을 딴) model(모델링이다) -->
+<!-- 따라서 html의 모든 태그요소를 클래스오브젝트처럼 바꾼다. -->
+<html>
+<head></head>
+<body>
+    <p id="test">data</p>
+    <div>
+        <div>inner</div>
+    </div>
+
+<script>
+//Dom Document Object model
+// // 즉 자동으로 아래처럼 작동한다. == > 스펙상 document를 가지고 있다
+// var html = new HTML();
+// var body = new BODY();
+// var head = new HEAD();
+// html.appendChild(head);
+// html.appendChild(body);
+
+// var p = new P();
+// var div = new DIV();
+// var div2 = new DIV("inner");
+
+var body = document.body;
+console.log(body.children[1].children[0].innerHTML);
+//자동으로 위처럼 파악하는걸 성공했다는 것을 알 수 있다.
+console.log(document.getElementsByTagName("div"));
+//계층은 관계없이 모두 보여준다.
+console.log(document.getElementById("test").innerHTML = "안녕하세요");
+//자바스크립트를 실행함으로써 html의 내용을 동적으로 바꿀 수 있다는 것을 의미
+
+//이를 아래처럼 응용할 수 있다.
+var panel = document.getElementById("test");
+var log = function (data) {
+    panel.innerHTML = data;
+};
+log("hello DOM");
+
+//두번째 내용 : 자바스크립트엔진에 내장되어있는 setInterval :: 첫번쨰인자는 함수를, 두번째 인자는 숫자를
+//두번째 인자의 밀리sec마다 함수내용을 호출
+var brightness = function(color) {
+    panel.style.backgroundColor = "rgb("+color+","+color+","+color+")";
+} 
+// var count = 0;
+// setInterval(function(){
+//     if (count<255){
+//         count++;
+//     } else count = 0;
+//     log(count);
+//     brightness(count);
+// }, 100);
+
+//소통이 가능하다
+var msg = "hello";
+panel.addEventListener("click", function(event) {
+    alert(msg);
+});
+(function(){
+    var brightness = function(){
+        panel.style.backgroundColor = "rgb(200,200,200)";
+    };
+    panel.addEventListener("mouseover", function(event) {
+    brightness(200);
+    });
+})();
+//함수의 리터럴을 감싼다면 한번실행이후에 더이상 얘는 건드릴수도없다.. ===> 방식이 함수밖에 없기때문에 많이 쓰임
+
+panel.addEventListener("mouseout", function(event) {
+    brightness(250);
+});
+//이와같은 함수를 이해하기 위해서 아까의 함수와 스코프개념이 필요했던 것
+
+//또 다른 것
+//BOM : browser object model
+
+//네이버모바일예약 클라이언트시스템만들기 :: 중간고사 이후에 진행될 실습과제.
+
+
+</script>
+</body>
+</html>
