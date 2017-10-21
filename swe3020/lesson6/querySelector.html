@@ -1,0 +1,63 @@
+<html>
+<head>
+<style>
+ul > li > div {color:red;}
+</style>
+</head>
+<body>
+    <div></div>
+    <ul>
+        <li>item1</li>
+        <li>item2<div>special item</div></li>
+        <li>item3</li>
+        <li id="test">item4<div>special item2</div></li>
+        <li>item5</li>
+    </ul>
+    <ul id="imgList">
+    </ul>
+    <img id="dog"/>
+</body>
+<script>
+//예시 : 텍스트부분을 클릭하면 img태그의 src를 바꿔주고 싶은 app
+// var images = [{name:a1, data:src}, {name:a1, data:src}, {name:a1, data:src}]; :: 이를 다른 js파일로 만들어주면 로직과 데이터를 완전히 분리할 수 있다
+var list = document.querySelector("#imgList"); // selectorAll과 selector이 다른 점 : selectorAll을 사용했을 때 notfunction error가 29line(append작업)에서 발생한다
+var display = document.querySelector("#dog");
+for (var i=0;i<images.length;i++) {
+    // li엘리먼트를 만들어주고
+    var li = element.createElement("li");
+    // list에 자식으로 넣어준뒤
+    list.appendChild(li);
+    //개별 li에 name을 넣어주고
+    li.innerHTML = images[i].name;
+    // 이건 플러스 + 다 때려박을수있다
+    li.style.cssText = "font-size:20px;color:#a00;cursor:pointer;";
+    //li에 이벤트를 걸어준다
+    //이래서 스코프가 어렵다 : 스코프를 새로 만들어주지 않으면 항상 length-1값에서 멈춰있을 수 있다
+    (function() { 
+        var src = images[i].data;
+        // 이 src는 루프가 돌때마다 새롭게 ..
+        li.onclick = function() {
+        //이미지태그의 src를 바꿔준다. src용 값은?
+        display.src = src;
+        }
+    })()
+    
+
+}
+
+
+// ===============
+var div = document.querySelector("ul>li>div"); // 이 조건에 만족하는 element 하나를 반환한다
+div.style.color = "blue";
+var divs = document.querySelectorAll("ul>li>div");
+for (var i=0;i<divs.length;i++) {
+    divs[i].style.background = "grey";
+}
+var item4 = document.querySelector("#test");
+item4.style.color = "green";
+// 1. 스타일을 변경한다 - element.style.xxx
+// 2. 속성을 변경한다 - img.src = "aaa.jpg"
+// 3. 이벤트를 건다 - element.onclick = function() {}
+// 4. innerHTML을 사용한다 - div.innerHTML = "hellowkrld"
+</script>
+</html>

@@ -17,7 +17,7 @@ arr["100"] = 20;
 console.log(arr.abc, arr[100]);
 
 //**배열관련 메소드(오브젝트에서는 불가)
-//오브젝트가 아닌 배열을 사용하는 이유 : 개별원소보다는 자체의 class에 관심이 있기 때문
+// 오브젝트가 아닌 배열을 사용하는 이유 : 개별원소보다는 자체의 class에 관심이 있기 때문
 // 따라서 자체 loop 메소드 또한 내장하고있다?()
 var arr2 = [100, 50, 1, 4, 5];
 var compareTo = function(a, b) {
@@ -29,25 +29,22 @@ arr2.sort(); // 사전식 정렬
 console.log(arr2);
 // 그래서 사전식 정렬말고 함수를 이용한다면?
 // 자바스키립트doc 내의 sort메소드를 외워야한다
-arr2.sort(compareTo);
-console.log(arr2);
-// 예를 들어 doc을 보면 이렇게 생겼다..
-// var explaneSort = function(f) {
-//     for (var i=0;i<arr2.length;i++) {
-//         var a = arr2[i];
-//         for (var j=0;j<arr2.length;i++) {
-//             if (i==j) continue;
-//             var b = arr2[j];
-//             if (f(a, b)==1) {
-
-//             } else if (f(a, b)==0) {
-
-//             } else {
-
-//             }
-//         }
-//     }
-// }
+// arr2.sort(compareTo);
+// console.log(arr2);
+// 예를 들어 doc을 보고 유추했을 때, 이렇게 생겼다.. ++ 객체까지 공부한 후 만들어보기
+var explaneSort = function(f) {
+    for (var i=0;i<arr2.length-1;i++) {
+        if (f(arr2[i], arr2[i+1])<=0) continue; 
+        else {
+            var temp = arr2[i];
+            arr2[i] = arr2[i+1];
+            arr2[i+1] = temp;
+        }
+    }
+}
+// arr2.sort(compareTo);
+explaneSort(compareTo);
+console.log("sorting"+arr2);
 
 //stack
 arr2.push(1, 2, 3, 4, 5, 6)
@@ -77,8 +74,11 @@ arr2.forEach(function(v, index){
 });
 //함수리터럴이라는 의미는 function(){~} 까지가 해당, 즉 이를 리터럴로 받는다
 // 1급객체의 조건 : 변수할당가능, 인자로 받을수 있음, 리턴값으로 가능 
-console.log(sum);
-
+console.log("sum "+sum);
+arr2.forEach(function(v){
+    sum+=v;
+});
+console.log("sumtest "+sum);
 //forEach는 어떻게 생겼을까..
 // var forEachMethod = function(f) {
 //     for (var i=0;i<arr2.length;i++) {
@@ -112,9 +112,9 @@ outer(1, 2);
 //스코프 응용2
 var check = 100;
 var outer2 = function() {
-    var check = 50;
+    // var check = 50;
     var inner = function() {
-        var check = 10;
+        // var check = 10;
         console.log(check);
     }
     inner();

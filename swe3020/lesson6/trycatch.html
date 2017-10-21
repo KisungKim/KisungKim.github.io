@@ -1,0 +1,36 @@
+<html>
+<head></head>
+<body>
+<input type="text" id="data"/>
+<div id="msg"></div>
+
+<script>
+var target = document.getElementById("data");
+var message = document.getElementById("msg")
+var solution = 53;
+var test = function() {
+    var result = "ok";
+    
+    try {
+        var x = target.value;
+        if (x == "") throw "빈값";
+        else if (isNaN(x)) throw "not number";
+        else x = Number(x);
+
+        if (x>solution) throw "크다";
+        else if (x<solution) throw "작다";
+        
+    } catch(e) {
+        result = e;
+    }
+    msg.innerHTML = result;
+};
+target.onkeyup = test;
+// onkeyup
+</script>
+</body>
+</html>
+
+
+
+
