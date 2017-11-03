@@ -4,6 +4,7 @@
 <head></head>
 <body>
     <p id="test">data</p>
+    <button id="stop"></button>
     <div>
         <div>inner</div>
     </div>
@@ -21,12 +22,12 @@
 // var div = new DIV();
 // var div2 = new DIV("inner");
 
-var body = document.body;
-console.log(body.children[1].children[0].innerHTML);
-//자동으로 위처럼 파악하는걸 성공했다는 것을 알 수 있다.
-console.log(document.getElementsByTagName("div"));
-//계층은 관계없이 모두 보여준다.
-console.log(document.getElementById("test").innerHTML = "안녕하세요");
+// var body = document.body;
+// console.log(body.children[1].children[0].innerHTML);
+// //자동으로 위처럼 파악하는걸 성공했다는 것을 알 수 있다.
+// console.log(document.getElementsByTagName("div"));
+// //계층은 관계없이 모두 보여준다.
+// console.log(document.getElementById("test").innerHTML = "안녕하세요");
 //자바스크립트를 실행함으로써 html의 내용을 동적으로 바꿀 수 있다는 것을 의미
 
 //이를 아래처럼 응용할 수 있다.
@@ -41,15 +42,22 @@ log("hello DOM");
 var brightness = function(color) {
     panel.style.backgroundColor = "rgb("+color+","+color+","+color+")";
 } 
-// var count = 0;
-// setInterval(function(){
-//     if (count<255){
-//         count++;
-//     } else count = 0;
-//     log(count);
-//     brightness(count);
-// }, 100);
-
+var count = 0;
+var changeColor = setInterval( function()
+                        {
+                        if (count<255) count++;
+                        else count = 0;
+                        
+                        log(count);
+                        brightness(count);
+                        }, 10);
+log(changeColor);
+var stopper = function() {
+    clearInterval(changeColor);
+}
+var bt = document.querySelector("#stop");
+bt.addEventListener("click", stopper);
+bt.innerHTML = "stop please";
 //소통이 가능하다
 var msg = "hello";
 panel.addEventListener("click", function(event) {
