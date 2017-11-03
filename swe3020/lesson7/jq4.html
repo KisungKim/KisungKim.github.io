@@ -1,0 +1,27 @@
+<html>
+        <head> 
+        </head>
+        <body>
+
+            <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+            <script>
+                //리퀘스트를 보낼 수 있는 객체를 만든다
+                var request = new XMLHttpRequest();
+                request.onreadystatechange = function(){
+                    // 수신이 완료되었을 때(send전까지는 0 그 이후로 1, 2, 3이지만 우리가 관심있는건..)
+                    // 상태변화의 단계를 나타내는 것 : state
+                    if(request.readyState == 4){
+                        // 확정상태 : status
+                        if(request.status == 200){
+                            console.log(request.responseText);
+                        }
+                    }
+                }
+                request.open("GET", "http://www.naver.com");
+                request.send();
+            </script>
+        </body>
+    </html>

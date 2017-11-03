@@ -1,0 +1,35 @@
+<html>
+        <head>
+            
+        </head>
+        <body>
+            <section class="testover">
+                <h2></h2>
+                <div></div>
+            </section>
+            <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+            <script>
+                var model = {
+                    title:{
+                        over:"test overed",
+                        out:"test"
+                    },
+                    count:0
+                };
+                $(".testover").click(function(e) {
+                    e.stopImmediatePropagation(); 
+                    var children = $(e.currentTarget).children();                 
+                    $(children[0]).html(model.title.over);
+                    $(children[1]).html(model.count++);
+                });
+                var init = function(){
+                    $($(".testover").children()[0]).html(model.title.out);
+                };
+                init();
+
+            </script>
+        </body>
+    </html>
