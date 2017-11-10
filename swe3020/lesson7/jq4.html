@@ -9,7 +9,7 @@
             crossorigin="anonymous"></script>
             <script>
                 
-                /*
+                
                 //리퀘스트를 보낼 수 있는 객체를 만든다
                 var request = new XMLHttpRequest();
                 request.onreadystatechange = function(){
@@ -22,11 +22,13 @@
                         }
                     }
                 }
-                request.open("GET", "jq1.html");
-                request.send();
-                */
-                // 위의 jq1.html?a=3&b=5를 아래처럼 편하게..
-                $.get("jq1.html", {a:5, b:3}, function(data, status) {
+                request.open("POST", "jq1.html");
+                request.send("a=3&b=5");
+                
+                // jq1.html?a=3&b=5와 같다, POST의 경우 GET만 바꿔주면 된다
+                //위를request.open("POST", "jq1.html");
+                //request.send("a=3?b=5");
+                $.post("jq1.html", {a:5, b:3}, function(data, status) {
                     console.log(data);
                 })
             </script>
