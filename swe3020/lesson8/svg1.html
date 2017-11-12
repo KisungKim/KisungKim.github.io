@@ -1,0 +1,22 @@
+<html>
+    <head></head>
+    <body>
+        <svg id="test" style="width:200px;height:50px" xmlns="http://www.w3.org/2000/svg" version="1.1">
+            <ellipse cx="50%" cy="50%" rx="50%" ry="50%" style="fill:cadetblue;stroke-width:0"/>                    
+            <rect x="15%" y="15%" width="70%" height="70%" style="fill:bisque;stroke-width:2;stroke:blue"/>
+            <circle cx="50%" cy="50%" r="20%" stroke="black" stroke-width="0" fill="red">
+                <animate attributeName="cx" from="0%" to="100%" dur="5s"/>
+                <animate attributeName="r" from="0%" to="50%" dur="5s"/>
+            </circle>
+            
+        </svg>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+        <script>
+            $("#test").click(function(e) {
+                alert("test");
+            })
+        </script>
+    </body>
+</html>

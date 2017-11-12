@@ -1,0 +1,63 @@
+<html>
+    <head></head>
+    <body>
+        <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous"></script>
+        <script>
+        $(function() {
+            var json = {
+    "result":"ok",
+    "data":[
+        {"headdata":"true", 
+         "groupname":"비사이드",
+         "theme":[
+             {"color":"red",
+              "image":"image1"
+             }], 
+         "order":[
+             {"active":"no",
+              "o_name":"",
+              "o_direction":"",
+              "o_icon":""
+             }],
+         "isShow":"false"
+        },
+
+        {"tid":1, 
+         "tname":"셀러확인",
+         "tcheck":"false", 
+         "tproperty":[
+            {
+                "ticon":"sun",
+                "tcolor":"gray",
+                "tdetail":[{"tdcolor":"blue", "tdmessage":"오늘 할 일"}]
+            },
+            {
+                "ticon":"calendar",
+                "tcolor":"blue",
+                "tdetail":[{"tdcolor":"blue", "tdmessage":"오늘"}]
+            }]
+        },
+        
+        {"add_todo":[{"at_icon":"addtodo", "color":"red"}] }
+    ]
+}
+    // console.log(json.data[0]);
+    // console.log(json.data[1]);
+    
+    for (var i=1;i<json.data.length;i++) {
+        if (json.data[i].tid) {
+            for ( item in json.data[i]) console.log(item);
+            console.log(json.data[i].tname);
+        }
+        
+    }
+
+
+        })
+        </script>
+    </body>
+</html>
+

@@ -1,0 +1,35 @@
+<html>
+        <head> 
+        </head>
+        <body>
+
+            <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+            <script>
+                var input = document.createElement("input");
+                input.name = "test";
+                input.type = "text";
+                input.value = "test";
+                document.body.appendChild(input);
+
+                var a = $('<input type="text" name="test2" value="test2"/>');
+                document.body.appendChild(a[0]);
+                var obj =  {
+                    "a":27,
+                    "b":"abc"
+                }
+                //{"키":문자열, 숫자, 불린, 오브젝트리터럴, 배열리터럴} // 의 형태만 올 수 있다 즉 null, undefined인정되지 않는다
+                //JSON에서는 ''금지 -> ""사용해야함
+                //그 결과는 오브젝트 리터럴의 객체(문자열을 객체로 만들 때)
+                //주의 : 그 syntax와 맞지 않으면 프로그램이 죽어버린다. 그래서 exception이 반드시 필요
+                var json = '{"a":3, b:5}';
+                try{
+                    console.log(JSON.parse(json).b);
+                } catch(e) {
+                    console.log(e);
+                }
+                console.log(JSON.stringify(obj))//객체를 문자열로 바꿀 때
+            </script>
+        </body></html>

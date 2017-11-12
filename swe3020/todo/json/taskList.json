@@ -1,0 +1,41 @@
+{
+    "result":"ok",
+    "data":[
+        // data[0]는 헤드 정보 부분  
+        {"head":[
+            {"groupname":"비사이드",
+             "theme":[
+               {"color":"red",
+                "image":"image1"
+                }], 
+             "order":[
+                {"active":"no",
+                "o_name":"",
+                "o_direction":"",
+                "o_icon":""
+                }],
+             "isShow":"false"
+            }]
+        },
+        // todo시작
+        {"tid":1, 
+         "tname":"셀러확인",
+         "tcheck":"false", 
+         "tproperty":[
+            {
+                "ticon":"sun",
+                "tcolor":"gray",
+                "tdetail":[{"tdcolor":"blue", "tdmessage":"오늘 할 일"}]
+            },
+            {
+                "ticon":"calendar",
+                "tcolor":"blue",
+                "tdetail":[{"tdcolor":"blue", "tdmessage":"오늘"}]
+            }]
+        },
+        
+        {"add_todo":[{"at_icon":"addtodo", "color":"red"}] }
+    ]
+}
+
+
