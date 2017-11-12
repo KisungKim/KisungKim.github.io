@@ -2,11 +2,15 @@
     "result":"ok",
     "data":[
         {"h":"목록 편집",
-        // "value":"이전목록가져오기()", 
+         "value":"제목 없는 목록", 
          "icon":"smileicon",
          "area":"textarea",
-         "cancel":"취소",
-         "save":"저장"
+         "area_bottom_color":"blue",         
+         "cancel_msg":"취소",
+         "save_msg":"저장",
+         "save_color":"blue",
+         "cancel_color":"gray",
+         "basic_color":"black"
         }
     ]
 }

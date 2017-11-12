@@ -1,9 +1,9 @@
 {
     "result":"ok",
     "data":[
-        {"now_key":"show"},
-        {"action":"show", "element":[{}]},
-        {"action":"hide",    "action":"hide", "icon":"sort",  "color":"blue"}       
+        {"now_key":true},
+        {"action":true,  "tid_el":[1]},
+        {"action":false, "tid_el":[]}       
     ]
 }
 

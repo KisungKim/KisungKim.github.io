@@ -1,7 +1,7 @@
 {
     "result":"ok",
     "data":[
-        {"head":[{"h":"테마변경", "now_color_k":1, "now_image_k":1, "checkMark":"checkicon"}]},
+        {"head":[{"h":"테마변경","icon":"theme","now_color_k":1, "now_image_k":1, "icon":"checkmark"}]},
         {"color":[
             {"co_id":1,"color":"blue"},
             {"co_id":2,"color":"peach"},
@@ -15,8 +15,7 @@
             {"im_id":3,"image":"cabin"},
             {"im_id":4,"image":"airplane"},
             {"im_id":5,"image":"tower"}
-        ]}
-                 
+        ]}         
     ]
 }
 

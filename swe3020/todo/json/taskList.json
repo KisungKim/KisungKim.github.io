@@ -4,7 +4,7 @@
         {"head":[
             {"groupname":"비사이드",
              "theme":[{"now_color_key":1,"now_image_key":1, "image_show":true}], 
-             "order":[{"order_k":"","o_icon":"cancel_icon",
+             "order":[{"order_k":false,"o_icon":"cancel_icon",
                        "message":[
                             {"k":"title", "word":"제목순으로 정렬"},
                             {"k":"deadline", "word":"기한별로 정렬"},
@@ -27,7 +27,7 @@
         // todo시작
         {"tid":1, 
          "tname":"셀러확인",
-         "tcheck":[{"status":false, "type":"radio"}], 
+         "tcheck":[{"status":false, "button":"radio_button"}], 
          "tproperty":[
             {
                 "ticon":"sun",
@@ -40,8 +40,19 @@
                 "tdetail":[{"tdcolor":"blue", "tdmessage":"오늘"}]
             }]
         },
-        
-        {"add_todo":[{"at_icon":"addtodo", "color":"red"}] }
+        //taskList에서 오른쪽 아래 할일추가 버튼
+        {"add_todo":[{"at_icon":"addtodo", "color":"red"}]},
+        //taskList에서 오른쪽 위 버튼눌렀을 때
+        {"task_edit":[
+            {"el":"name",  "name":"목록 이름 바꾸기",    "icon":"pencil"},
+            {"el":"sort",  "name":"정렬",               "icon":"sort"},
+            {"el":"theme", "name":"테마 변경",          "icon":"theme"},
+            {
+                "el":"hide",  
+                "name":["완료된 할 일 숨기기", "완료된 할 일 표시"],
+                "icon":"hide"
+            },
+            {"el":"delete","name":"목록 삭제",           "icon":"delete"} ]}
     ]
 }
 
