@@ -3,7 +3,21 @@
     "data":[
         {"head":[
             {"groupname":"비사이드",
-             "theme":[{"now_color_key":1,"now_image_key":1, "image_show":true}], 
+             "theme":[{"now_color_key":1,"now_image_key":1, "image_show":true},
+                {"color":[
+                    {"co_id":1,"color":"blue"},
+                    {"co_id":2,"color":"peach"},
+                    {"co_id":3,"color":"purple"},
+                    {"co_id":4,"color":"green"},
+                    {"co_id":5,"color":"sky"}
+                ]},
+                {"image":[
+                    {"im_id":1,"image":"mountain"},
+                    {"im_id":2,"image":"travel"},
+                    {"im_id":3,"image":"cabin"},
+                    {"im_id":4,"image":"airplane"},
+                    {"im_id":5,"image":"tower"}
+                ]}], 
              "order":[{"order_k":false,"o_icon":"cancel_icon",
                        "message":[
                             {"k":"title", "word":"제목순으로 정렬"},
