@@ -1,0 +1,12 @@
+{
+    "result":"ok",
+    "data":[
+        {"el":"name",  "name":"목록 이름 바꾸기",    "icon":"pencil"},
+        {"el":"sort",  "name":"정렬",               "icon":"sort"},
+        {"el":"theme", "name":"테마 변경",          "icon":"theme"},
+        {"el":"hide",  "name":"완료된 할 말 숨기기", "icon":"hide"},
+        {"el":"delete","name":"목록 삭제",           "icon":"delete"}         
+    ]
+}
+
+

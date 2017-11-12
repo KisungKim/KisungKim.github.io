@@ -1,0 +1,10 @@
+{
+    "result":"ok",
+    "data":[
+        {"now_key":"show"},
+        {"action":"show", "element":[{}]},
+        {"action":"hide",    "action":"hide", "icon":"sort",  "color":"blue"}       
+    ]
+}
+
+

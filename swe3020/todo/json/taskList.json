@@ -1,26 +1,33 @@
 {
     "result":"ok",
     "data":[
-        // data[0]는 헤드 정보 부분  
         {"head":[
             {"groupname":"비사이드",
-             "theme":[
-               {"color":"red",
-                "image":"image1"
-                }], 
-             "order":[
-                {"active":"no",
-                "o_name":"",
-                "o_direction":"",
-                "o_icon":""
-                }],
-             "isShow":"false"
+             "theme":[{"now_color_key":1,"now_image_key":1, "image_show":true}], 
+             "order":[{"order_k":"","o_icon":"cancel_icon",
+                       "message":[
+                            {"k":"title", "word":"제목순으로 정렬"},
+                            {"k":"deadline", "word":"기한별로 정렬"},
+                            {"k":"addedDate", "word":"만든 날짜순으로 정렬"},
+                            {"k":"done", "word":"완료 여부로 정렬"},
+                            {"k":"addTodo", "word":"My Day에 추가 여부로 정렬"}
+                            ],
+                       "o_direction":[{"up":"icon_up", "down":"icon_down"}]
+                    }],
+             "isShow":false,
+             "scroll":false
             }]
         },
+        {"body_layout":[
+            {"todo_block":"block",
+             "block_border":"bottom",
+             "border_color":"gray"
+            }
+        ]},
         // todo시작
         {"tid":1, 
          "tname":"셀러확인",
-         "tcheck":"false", 
+         "tcheck":[{"status":false, "type":"radio"}], 
          "tproperty":[
             {
                 "ticon":"sun",

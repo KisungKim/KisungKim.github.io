@@ -1,0 +1,48 @@
+{
+    "result":"ok",
+    "data":[
+        {"head":[{"h":"정렬","now_status":true,"now_order_key":"title"}]},
+        {
+            "order":"title",    
+            "name":"제목",
+            "icon":"sort",
+            "color":"blue",
+            "message":"blue",
+            "checked":"checkicon"
+        },
+        {
+            "order":"deadline",
+            "name":"기한",
+            "icon":"theme",
+            "color":"gray",
+            "message":"black",
+            "checked":""
+        },
+        {
+            "order":"addedDate",
+            "name":"만든 날짜",
+            "icon":"hide",
+            "color":"gray",
+            "message":"black",
+            "checked":""
+        },
+        {
+            "order":"done",
+            "name":"완료됨",
+            "icon":"delete",
+            "color":"gray",
+            "message":"black",
+            "checked":""
+        },
+        {
+            "order":"addTodo",
+            "name":"나의 하루에 추가됨",
+            "icon":"delete",
+            "color":"gray",
+            "message":"black",
+            "checked":""
+        }         
+    ]
+}
+
+

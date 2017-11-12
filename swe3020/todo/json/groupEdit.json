@@ -1,0 +1,14 @@
+{
+    "result":"ok",
+    "data":[
+        {"h":"목록 편집",
+        // "value":"이전목록가져오기()", 
+         "icon":"smileicon",
+         "area":"textarea",
+         "cancel":"취소",
+         "save":"저장"
+        }
+    ]
+}
+
+
