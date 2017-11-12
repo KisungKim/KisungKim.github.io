@@ -6,7 +6,7 @@
             "icon_left":"radio_button",
             "icon_right":"send_button",
             "area":"textarea",
-            "typing_color":"blue",
+            "isTyped_color":"blue",
             "basic_color":"gray"   
             }]
         }        

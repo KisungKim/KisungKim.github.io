@@ -1,11 +1,11 @@
 {
     "result":"ok",
     "data":[
-        {"head":[{"h":"정렬","icon":"sort","now_status":true,"now_order_key":"title"}]},
+        {"head":[{"h":"정렬","now_status":true,"now_order_key":"title"}]},
         {
             "order":"title",    
             "name":"제목",
-            "icon":"sort",
+            "icon":"sort_title",
             "color":"blue",
             "message":"blue",
             "checked":"checkicon"
@@ -13,7 +13,7 @@
         {
             "order":"deadline",
             "name":"기한",
-            "icon":"theme",
+            "icon":"sort_deadline",
             "color":"gray",
             "message":"black",
             "checked":""
@@ -21,7 +21,7 @@
         {
             "order":"addedDate",
             "name":"만든 날짜",
-            "icon":"hide",
+            "icon":"sort_addedDate",
             "color":"gray",
             "message":"black",
             "checked":""
@@ -29,7 +29,7 @@
         {
             "order":"done",
             "name":"완료됨",
-            "icon":"delete",
+            "icon":"sort_done",
             "color":"gray",
             "message":"black",
             "checked":""
@@ -37,7 +37,7 @@
         {
             "order":"addTodo",
             "name":"나의 하루에 추가됨",
-            "icon":"delete",
+            "icon":"sort_addTodo",
             "color":"gray",
             "message":"black",
             "checked":""

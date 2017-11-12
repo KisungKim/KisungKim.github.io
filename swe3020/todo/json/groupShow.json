@@ -1,9 +1,10 @@
 {
     "result":"ok",
     "data":[
-        {"now_key":true},
-        {"action":true,  "tid_el":[1]},
-        {"action":false, "tid_el":[]}       
+        {"now_key":"show_action"},
+        //tid를 저장
+        {"show_action":[1]},
+        {"hide_action":[]}       
     ]
 }
 

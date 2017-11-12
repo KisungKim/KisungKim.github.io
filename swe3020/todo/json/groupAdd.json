@@ -10,6 +10,7 @@
          "save_msg":"저장",
          "save_color":"blue",
          "cancel_color":"gray",
+         "inactive_color":"lightgray",         
          "basic_color":"black"
         }
     ]

@@ -6,7 +6,7 @@
         { "id":3, "name":"비사이드", "color":"red", "icon":"li", "count":1},
         { "id":4, "name":"교육 및 수업", "color":"green",   "icon":"li", "count":1},
         
-        {"add_group":[{"ag_icon":"addlist", "message":"새 목록" }] }
+        {"add_group":[{"ag_icon":"addlist", "message":"새 목록", "color":"blue" }] }
     ]
 }
 
