@@ -1,17 +1,12 @@
 {
     "result":"ok",
     "data":[
-        {"h":"새 목록",
-         "value":"제목 없는 목록", 
-         "icon":"smileicon",
-         "area":"textarea",
-         "area_bottom_color":"blue",
-         "cancel_msg":"취소",
-         "save_msg":"저장",
-         "save_color":"blue",
-         "cancel_color":"gray",
-         "inactive_color":"lightgray",         
-         "basic_color":"black"
+        { 
+            "id":5,
+            "name":"목록을 만들었습니다",
+            "color":"blue",
+            "icon":"sun",
+            "count":0
         }
     ]
 }

@@ -1,17 +1,12 @@
 {
     "result":"ok",
     "data":[
-        {"h":"목록 편집",
-         "value":"제목 없는 목록", 
-         "icon":"smileicon",
-         "area":"textarea",
-         "area_bottom_color":"blue",         
-         "cancel_msg":"취소",
-         "save_msg":"저장",
-         "save_color":"blue",
-         "cancel_color":"gray",
-         "inactive_color":"lightgray",
-         "basic_color":"black"
+        { 
+            "id":4,
+            "name":"목록 이름을 변경하였습니다",
+            "color":"green",
+            "icon":"li",
+            "count":1
         }
     ]
 }

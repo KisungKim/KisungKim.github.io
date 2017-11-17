@@ -1,21 +1,18 @@
 {
     "result":"ok",
     "data":[
-        {"head":[{"h":"테마변경","now_color_k":0, "now_image_k":0, "markicon":"checkmark"}]},
-        {"color":[
-            {"co_id":0,"color":"blue"},
-            {"co_id":1,"color":"peach"},
-            {"co_id":2,"color":"purple"},
-            {"co_id":3,"color":"green"},
-            {"co_id":4,"color":"sky"}
-        ]},
-        {"image":[
-            {"im_id":0,"image":"mountain"},
-            {"im_id":1,"image":"travel"},
-            {"im_id":2,"image":"cabin"},
-            {"im_id":3,"image":"airplane"},
-            {"im_id":4,"image":"tower"}
-        ]}         
+            {"co_id":0,"color":"blue", "selected":"True"},
+            {"co_id":1,"color":"peach", "selected":"False"},
+            {"co_id":2,"color":"purple", "selected":"False"},
+            {"co_id":3,"color":"green", "selected":"False"},
+            {"co_id":4,"color":"sky", "selected":"False"},
+            
+            {"im_id":0,"image":"mountain", "selected":"True"},
+            {"im_id":1,"image":"travel", "selected":"False"},
+            {"im_id":2,"image":"cabin", "selected":"False"},
+            {"im_id":3,"image":"airplane", "selected":"False"},
+            {"im_id":4,"image":"tower", "selected":"False"}
+                 
     ]
 }
 

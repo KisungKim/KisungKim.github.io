@@ -1,13 +1,12 @@
 {
     "result":"ok",
     "data":[
-        {"h":"목록 삭제",   
-        "message":"이 목록을 완전히 삭제하시겠습니까?", 
-        "cancel_msg":"취소",
-        "save_msg"  :"예",
-        "save_color":"red",
-        "cancel_color":"gray",
-        "basic_color":"black"
+        { 
+            "id":4,
+            "name":"교육 및 수업",
+            "color":"green",
+            "icon":"li",
+            "count":1
         }
     ]
 }

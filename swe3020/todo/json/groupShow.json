@@ -1,10 +1,12 @@
 {
     "result":"ok",
     "data":[
-        {"now_key":"show_action"},
-        //tid를 저장
-        {"show_action":[1]},
-        {"hide_action":[]}       
+        {
+            "id":1,
+            "name":"오늘 할 일",
+            "check":"No",
+            "show":"Yes"
+        }     
     ]
 }
 

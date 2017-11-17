@@ -1,72 +1,14 @@
 {
     "result":"ok",
     "data":[
-        {"head":[
-            {"groupname":"비사이드",
-             "theme":[{"now_color_key":0,"now_image_key":0, "image_show":true},
-                {"color":[
-                    {"co_id":0,"color":"blue"},
-                    {"co_id":1,"color":"peach"},
-                    {"co_id":2,"color":"purple"},
-                    {"co_id":3,"color":"green"},
-                    {"co_id":4,"color":"sky"}
-                ]},
-                {"image":[
-                    {"im_id":0,"image":"mountain"},
-                    {"im_id":1,"image":"travel"},
-                    {"im_id":2,"image":"cabin"},
-                    {"im_id":3,"image":"airplane"},
-                    {"im_id":4,"image":"tower"}
-                ]}], 
-             "order":[{"order_k":true,"o_icon":"cancel_icon",
-                       "message":[
-                            {"k":"title", "word":"제목순으로 정렬"},
-                            {"k":"deadline", "word":"기한별로 정렬"},
-                            {"k":"addedDate", "word":"만든 날짜순으로 정렬"},
-                            {"k":"done", "word":"완료 여부로 정렬"},
-                            {"k":"addTodo", "word":"My Day에 추가 여부로 정렬"}
-                            ],
-                       "o_direction":[{"up":"icon_up", "down":"icon_down"}]
-                    }],
-             "isShow":true,
-             "scroll":false
-            }]
-        },
-        {"body_layout":[
-            {"todo_block":"block",
-             "block_border":"bottom",
-             "border_color":"gray"
-            }
-        ]},
-        // todo시작
-        {"tid":1, 
-         "tname":"셀러확인",
-         "tcheck":[{"status":false, "button":"radio_button", "color":"green"}], 
-         "tproperty":[
-            {
-                "ticon":"sun",
-                "ticolor":"gray",
-                "tdetail":[{"tdcolor":"blue", "tdmessage":"오늘 할 일"}]
-            },
-            {
-                "ticon":"calendar",
-                "ticolor":"blue",
-                "tdetail":[{"tdcolor":"blue", "tdmessage":"오늘"}]
-            }]
-        },
-        //taskList에서 오른쪽 아래 할일추가 버튼
-        {"add_todo":[{"at_icon":"addtodo", "color":"blue"}]},
-        //taskList에서 오른쪽 위 버튼눌렀을 때
-        {"task_edit":[
-            {"el":"name",  "name":"목록 이름 바꾸기",    "icon":"pencil"},
-            {"el":"sort",  "name":"정렬",               "icon":"sort"},
-            {"el":"theme", "name":"테마 변경",          "icon":"theme"},
-            {
-                "el":"hide",  
-                "name":["완료된 할 일 숨기기", "완료된 할 일 표시"],
-                "icon":"hide"
-            },
-            {"el":"delete","name":"목록 삭제",           "icon":"delete"} ]}
+    
+        {
+            "id":1,
+            "tid":1, 
+            "tname":"셀러확인",
+            "tdue":"today",            
+            "tdone":"False"
+        }
     ]
 }
 

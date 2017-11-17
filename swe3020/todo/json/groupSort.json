@@ -1,47 +1,34 @@
 {
     "result":"ok",
     "data":[
-        {"head":[{"h":"정렬","now_status":true,"now_order_key":"title"}]},
-        {
-            "order":"title",    
-            "name":"제목",
-            "icon":"sort_title",
+        { 
+            "id":1,
+            "name":"오늘 할 일",
             "color":"blue",
-            "message":"blue",
-            "checked":"checkicon"
+            "icon":"sun",
+            "count":0
         },
-        {
-            "order":"deadline",
-            "name":"기한",
-            "icon":"sort_deadline",
-            "color":"gray",
-            "message":"black",
-            "checked":""
+        { 
+            "id":2,
+            "name":"To-Do",
+            "color":"blue",
+            "icon":"home",
+            "count":0
         },
-        {
-            "order":"addedDate",
-            "name":"만든 날짜",
-            "icon":"sort_addedDate",
-            "color":"gray",
-            "message":"black",
-            "checked":""
+        { 
+            "id":3,
+            "name":"비사이드",
+            "color":"red",
+            "icon":"li",
+            "count":1
         },
-        {
-            "order":"done",
-            "name":"완료됨",
-            "icon":"sort_done",
-            "color":"gray",
-            "message":"black",
-            "checked":""
-        },
-        {
-            "order":"addTodo",
-            "name":"나의 하루에 추가됨",
-            "icon":"sort_addTodo",
-            "color":"gray",
-            "message":"black",
-            "checked":""
-        }         
+        { 
+            "id":4,
+            "name":"교육 및 수업",
+            "color":"green",
+            "icon":"li",
+            "count":1
+        }     
     ]
 }
 
