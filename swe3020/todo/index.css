@@ -1,0 +1,64 @@
+#wholelist {
+    display:inline-block;
+    font-family:"Nanum Gothic", Sans-serif;
+    src:url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+    font-size:25px;
+    padding : 7px;
+    border : 1px solid black;
+}
+#main {
+    display: inline-block;
+    height : 600px;
+}
+ul { 
+    list-style:none;
+    -webkit-padding-start: 0px;
+}
+li {
+    padding : 15px 14px 15px 10px;
+    text-align:left;
+}
+.first {
+    display : inline-block;
+    background-color: #CACEE8;
+}
+#list img, #addlist img {
+    position : relative;
+    height : 40px;
+    width : 40px; 
+} 
+#name {
+    display:inline-block;
+    position:relative;
+    top:-7px;    
+    width : 400px;
+    height : 40px;
+    margin-left : 20px;
+}
+.first #name {
+    top:-9px;
+}
+#addlist {      
+    color:blue;
+    padding-left:14px;
+}
+#addlist .plus {
+    width:20px;
+    height:20px;
+}
+#addlist .plusfont {
+    display:inline-block;
+    position : relative;
+    top:-10px;
+    width:420px;
+    margin-left:10px;
+}
+#count {
+    position: relative;
+    top:-7px;
+    color : gray;
+    font-size:90%;
+}
+.first #count {
+    top:-9px;
+}

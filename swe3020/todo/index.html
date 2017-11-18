@@ -1,29 +1,76 @@
 <html>
         <head> 
+            <link type="text/css" rel="stylesheet" href="index.css">
         </head>
         <body>
-            <style>
-                ul{list-style:none;}
-            </style>
-            <ul id="list">
-            
-            </ul>
-    
+
+            <div id="wholelist">
+                <div id="main">
+                    <ul id="list"></ul>
+                </div>
+                <div id="addlist">
+                    <img src="images/plus.png"/>
+                    <span class="plusfont">새 목록</span>
+                </div>
+            </div>
+
             <script
             src="https://code.jquery.com/jquery-3.2.1.min.js"
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-            crossorigin="anonymous"></script>
+            crossorigin="anonymous">
+            </script>
+
             <script>
-                
-            $.get("test.json", function(result, status) { // 이 json파일은 깃헙주소에서 몇개지우고 따오면된다
-                // console.log(result.data[0].color); // jquery할때는 이미 파싱이 되어서 들어오긴한다
+            var sources = 
+                {
+                    sun_icon:"images/sun.png",
+                    home_icon:"images/home.png",
+                    list_b:"images/list_b.png",
+                    list_o:"images/list_o.png",
+                    list_g:"images/list_g.png"
+                }
+            var listco = function(color) {
+                switch(color) {
+                    case "blue"  : return sources.list_b;
+                    case "red"   : return sources.list_o;
+                    case "green" : return sources.list_g;
+                }
+            }
+
+            var grouplist_json = "https://kisungkim.github.io/swe3020/todo/json/groupList.json"    
+            var groupadd_json  = "https://kisungkim.github.io/swe3020/todo/json/groupAdd.json"
+            $.get(grouplist_json, function(result, status) {
                 var arr = result.data;
                 var list = "";
-                for(var i=0;i<arr.length;i++) {
-                    list +="<li>;"+"<span style=\"color:\""+arr[i].color+">&#9776"+"</span>"+arr[i].name+"</li>"
-                }
+                list += '<div class="first"><li><img src="'+sources.sun_icon+'"/>'+
+                        '<span id="name">' +arr[0].name+'</span>'+
+                        '<span id="count">'+arr[0].count+'</span></li></div>';
+                list += '<li><img src="'+sources.home_icon+'"/>'+
+                        '<span id="name">' +arr[1].name+'</span>'+
+                        '<span id="count">'+arr[1].count+'</span></li>';    
+                for(var i=2;i<arr.length;i++) {
+                    list +=
+                        '<li>'+
+                        '<img src="'+listco(arr[i].color)+'"/>'+
+                        '<span id="name">' +arr[i].name+'</span>'+
+                        '<span id="count">'+arr[i].count+'</span>'+
+                        '</li>'
+                };
                 $("#list").html(list);
-                //참고로 햄버거메뉴 - hamburger menu unicode
+
+                $("#addlist").click(function() {
+                    $.get(groupadd_json, function(result, status) {
+                        var arr = result.data
+                        var newli = 
+                                '<li>'+
+                                '<img src="'+listco(arr[0].color)+'"/>'+
+                                '<span id="name">' +arr[0].name+'</span>'+
+                                '<span id="count">'+arr[0].count+'</span>'+
+                                '</li>'
+                        $("#list").append(newli);
+                    })
+                });
+
             });
             </script>
         </body>
