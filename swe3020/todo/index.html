@@ -1,9 +1,10 @@
 <html>
-        <head> 
+        <head>
+            <!-- 스타일을 지정 -->
             <link type="text/css" rel="stylesheet" href="index.css">
         </head>
         <body>
-
+            <!-- 레이아웃을 지정 -->
             <div id="wholelist">
                 <div id="main">
                     <ul id="list"></ul>
@@ -14,12 +15,14 @@
                 </div>
             </div>
 
+            <!-- JQUERY -->
             <script
             src="https://code.jquery.com/jquery-3.2.1.min.js"
             integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
             crossorigin="anonymous">
             </script>
 
+            <!-- 동작을 지정 -->
             <script>
             var sources = 
                 {
@@ -39,38 +42,53 @@
 
             var grouplist_json = "https://kisungkim.github.io/swe3020/todo/json/groupList.json"    
             var groupadd_json  = "https://kisungkim.github.io/swe3020/todo/json/groupAdd.json"
+            
             $.get(grouplist_json, function(result, status) {
-                var arr = result.data;
-                var list = "";
-                list += '<div class="first"><li><img src="'+sources.sun_icon+'"/>'+
-                        '<span id="name">' +arr[0].name+'</span>'+
-                        '<span id="count">'+arr[0].count+'</span></li></div>';
-                list += '<li><img src="'+sources.home_icon+'"/>'+
-                        '<span id="name">' +arr[1].name+'</span>'+
-                        '<span id="count">'+arr[1].count+'</span></li>';    
-                for(var i=2;i<arr.length;i++) {
-                    list +=
-                        '<li>'+
-                        '<img src="'+listco(arr[i].color)+'"/>'+
-                        '<span id="name">' +arr[i].name+'</span>'+
-                        '<span id="count">'+arr[i].count+'</span>'+
-                        '</li>'
-                };
-                $("#list").html(list);
-
-                $("#addlist").click(function() {
-                    $.get(groupadd_json, function(result, status) {
-                        var arr = result.data
-                        var newli = 
-                                '<li>'+
-                                '<img src="'+listco(arr[0].color)+'"/>'+
+                try {
+                    if (result.result != "ok") throw "JSON //groupList.json// data Error"
+                    else {
+                        var arr = result.data;
+                        var list = "";
+                        list += '<div class="first"><li><img src="'+sources.sun_icon+'"/>'+
                                 '<span id="name">' +arr[0].name+'</span>'+
-                                '<span id="count">'+arr[0].count+'</span>'+
+                                '<span id="count">'+arr[0].count+'</span></li></div>';
+                        list += '<li><img src="'+sources.home_icon+'"/>'+
+                                '<span id="name">' +arr[1].name+'</span>'+
+                                '<span id="count">'+arr[1].count+'</span></li>';    
+                        for(var i=2;i<arr.length;i++) {
+                            list +=
+                                '<li>'+
+                                '<img src="'+listco(arr[i].color)+'"/>'+
+                                '<span id="name">' +arr[i].name+'</span>'+
+                                '<span id="count">'+arr[i].count+'</span>'+
                                 '</li>'
-                        $("#list").append(newli);
-                    })
-                });
-
+                        };
+                        $("#list").html(list);
+                        $("#addlist").click(function() {
+                            $.get(groupadd_json, function(result, status) {
+                                try {
+                                    if (result.result != "ok") throw "JSON data //groupAdd.json// Error"
+                                    else {
+                                        var arr = result.data
+                                        var newli = 
+                                                '<li>'+
+                                                '<img src="'+listco(arr[0].color)+'"/>'+
+                                                '<span id="name">' +arr[0].name+'</span>'+
+                                                '<span id="count">'+arr[0].count+'</span>'+
+                                                '</li>'
+                                        $("#list").append(newli);
+                                    }
+                                } 
+                                catch(e) {
+                                    console.log(e)
+                                }
+                            })
+                        });
+                    }
+                }  
+                catch(e) {
+                    console.log(e);
+                }
             });
             </script>
         </body>

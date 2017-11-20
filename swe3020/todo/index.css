@@ -1,7 +1,10 @@
+@font-face {
+    font-family:NanumGothic;
+    src:url("https://fonts.googleapis.com/earlyaccess/nanumgothic.css")format("css");
+}
 #wholelist {
     display:inline-block;
-    font-family:"Nanum Gothic", Sans-serif;
-    src:url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+    font-family:NanumGothic, Sans-serif;
     font-size:25px;
     padding : 7px;
     border : 1px solid black;
