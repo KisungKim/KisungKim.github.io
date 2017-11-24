@@ -24,6 +24,7 @@
 
             <!-- 동작을 지정 -->
             <script>
+            // 목록아이콘이미지, 컬러선택함수, 목록리스트함수
             var sources = 
                 {
                     sun_icon:"images/sun.png",
@@ -44,33 +45,39 @@
                        '<span id="name">' +ary[ary_num].name+'</span>'+
                        '<span id="count">'+ary[ary_num].count+'</span></li>';
             }
-
+            //불러오는 json주소
             var grouplist_json = "https://kisungkim.github.io/swe3020/todo/json/groupList.json"    
             var groupadd_json  = "https://kisungkim.github.io/swe3020/todo/json/groupAdd.json"
-            
+            //목록만들기
             $.get(grouplist_json, function(result, status) {
                 try {
                     if (result.result != "ok") throw "JSON //groupList.json// data Error"
                     else {
                         var arr = result.data;
-                        var list = '<div class="first">'+
-                                        makelist(sources.sun_icon ,arr,0)+
-                                    '</div>'+
-                                        makelist(sources.home_icon,arr,1);   
+                        var list = '<div class="g1">'+makelist(sources.sun_icon ,arr,0)+'</div>'+
+                                   '<div class="g2">'+makelist(sources.home_icon,arr,1)+'</div>'; 
+                        var licnt=2;
                         for(var i=2;i<arr.length;i++) {
-                            list += makelist(listco(arr[i].color),arr,i);
+                            licnt++;
+                            list +='<div class="g'+licnt+'">'+
+                                    makelist(listco(arr[i].color),arr,i)+
+                                    '</div>';
                         };
                         $("#list").html(list);
+                        //추가목록만들기
                         $("#addlist").click(function() {
                             var listname = prompt("새 목록", "제목 없는 목록");
-                            $.get(groupadd_json,{"name":listname},function(result, status) {
+                            $.get(groupadd_json,{"id":licnt, "name":listname},function(result, status) {
                                 try {
                                     if (result.result != "ok") throw "JSON data //groupAdd.json// Error"
                                     else {
-                                        var arr = result.data
-                                        arr[0].name = listname;
-                                        var newli = makelist(listco(arr[0].color),arr,0);
-                                        $("#list").append(newli);
+                                        result.data[0].name = listname;
+                                        licnt++;
+                                        console.log(licnt);
+                                        $("#list").append(
+                                            '<div class="g'+licnt+'">'+
+                                            makelist(listco(result.data[0].color),result.data,0)+
+                                            '</div>');
                                     }
                                 } 
                                 catch(e) {
@@ -78,7 +85,14 @@
                                 }
                             })
                         });
+                        //div중 addlist는 제외
+                        //html에 get방식으로 추가
+                        $("#list div").click(function(){
+                            console.log($(this)[0]);
+                        });
+
                     }
+
                 }  
                 catch(e) {
                     console.log(e);
