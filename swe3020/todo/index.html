@@ -39,6 +39,11 @@
                     case "green" : return sources.list_g;
                 }
             }
+            var makelist = function(imgsrc,ary,ary_num) {
+                return '<li><img src="'+imgsrc+'"/>'+
+                       '<span id="name">' +ary[ary_num].name+'</span>'+
+                       '<span id="count">'+ary[ary_num].count+'</span></li>';
+            }
 
             var grouplist_json = "https://kisungkim.github.io/swe3020/todo/json/groupList.json"    
             var groupadd_json  = "https://kisungkim.github.io/swe3020/todo/json/groupAdd.json"
@@ -48,34 +53,23 @@
                     if (result.result != "ok") throw "JSON //groupList.json// data Error"
                     else {
                         var arr = result.data;
-                        var list = "";
-                        list += '<div class="first"><li><img src="'+sources.sun_icon+'"/>'+
-                                '<span id="name">' +arr[0].name+'</span>'+
-                                '<span id="count">'+arr[0].count+'</span></li></div>';
-                        list += '<li><img src="'+sources.home_icon+'"/>'+
-                                '<span id="name">' +arr[1].name+'</span>'+
-                                '<span id="count">'+arr[1].count+'</span></li>';    
+                        var list = '<div class="first">'+
+                                        makelist(sources.sun_icon ,arr,0)+
+                                    '</div>'+
+                                        makelist(sources.home_icon,arr,1);   
                         for(var i=2;i<arr.length;i++) {
-                            list +=
-                                '<li>'+
-                                '<img src="'+listco(arr[i].color)+'"/>'+
-                                '<span id="name">' +arr[i].name+'</span>'+
-                                '<span id="count">'+arr[i].count+'</span>'+
-                                '</li>'
+                            list += makelist(listco(arr[i].color),arr,i);
                         };
                         $("#list").html(list);
                         $("#addlist").click(function() {
-                            $.get(groupadd_json, function(result, status) {
+                            var listname = prompt("새 목록", "제목 없는 목록");
+                            $.get(groupadd_json,{"name":listname},function(result, status) {
                                 try {
                                     if (result.result != "ok") throw "JSON data //groupAdd.json// Error"
                                     else {
                                         var arr = result.data
-                                        var newli = 
-                                                '<li>'+
-                                                '<img src="'+listco(arr[0].color)+'"/>'+
-                                                '<span id="name">' +arr[0].name+'</span>'+
-                                                '<span id="count">'+arr[0].count+'</span>'+
-                                                '</li>'
+                                        arr[0].name = listname;
+                                        var newli = makelist(listco(arr[0].color),arr,0);
                                         $("#list").append(newli);
                                     }
                                 } 

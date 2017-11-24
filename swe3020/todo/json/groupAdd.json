@@ -3,9 +3,9 @@
     "data":[
         { 
             "id":5,
-            "name":"목록을 만들었습니다",
+            "name":"",
             "color":"blue",
-            "icon":"sun",
+            "icon":"li",
             "count":0
         }
     ]
