@@ -88,11 +88,11 @@
                         //div중 addlist는 제외
                         //html에 get방식으로 추가
                         $("#list div").click(function(){
-                            console.log($(this)[0]);
+                            $.get("https://kisungkim.github.io/swe3020/todo/task.html", function(data, status) {
+                             document.write(data);
+                            })
                         });
-
                     }
-
                 }  
                 catch(e) {
                     console.log(e);

@@ -1,7 +1,20 @@
 <html>
     <head></head>
     <body>
-        hello
+        <div>hello</div>
+    
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous">
+            </script>
+<script>    
+$(div).click(function() {
+    $.get("https://kisungkim.github.io/swe3020/todo/task.html", function(data, status) {
+        document.write(data);
+    })
+})
+</script>
     </body>
 </html>
 
