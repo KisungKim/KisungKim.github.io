@@ -2,9 +2,12 @@
         <head>
             <!-- 스타일을 지정 -->
             <link type="text/css" rel="stylesheet" href="index.css">
+            <link type="text/css" rel="stylesheet" href="task.css">            
+            
         </head>
         <body>
             <!-- 레이아웃을 지정 -->
+            <section id="grouplist_main">
             <div id="wholelist">
                 <div id="main">
                     <ul id="list"></ul>
@@ -14,6 +17,17 @@
                     <span class="plusfont">새 목록</span>
                 </div>
             </div>
+            </section>
+            
+            <section id="tasklist_main">
+            <div id="tasklist">
+                    <div id="header"></div>
+                    <div id="content">
+                        <ul id="tlist"></ul>
+                    </div>
+                    <div id="taddlist"></div>
+            </div>
+            </section>
 
             <!-- JQUERY -->
             <script
@@ -40,61 +54,113 @@
                     case "green" : return sources.list_g;
                 }
             }
-            var makelist = function(imgsrc,ary,ary_num) {
-                return '<li><img src="'+imgsrc+'"/>'+
-                       '<span id="name">' +ary[ary_num].name+'</span>'+
-                       '<span id="count">'+ary[ary_num].count+'</span></li>';
+            var make_glist = function(imgsrc,ary,ary_num) {
+                return '<li id="'+ary[ary_num].id+'">'+
+                            '<img src="'+imgsrc+'"/>'+
+                            '<span id="name">' +ary[ary_num].name+'</span>'+
+                            '<span id="count">'+ary[ary_num].count+'</span>'+
+                       '</li>';
             }
             //불러오는 json주소
             var grouplist_json = "https://kisungkim.github.io/swe3020/todo/json/groupList.json";    
             var groupadd_json  = "https://kisungkim.github.io/swe3020/todo/json/groupAdd.json";
-            //목록만들기
-                $.get(grouplist_json, function(result, status) {
-                    try {
-                        if (result.result != "ok") throw "JSON //groupList.json// data Error"
-                        else {
-                            var arr = result.data;
-                            var list = '<div class="g1">'+makelist(sources.sun_icon ,arr,0)+'</div>'+
-                                    '<div class="g2">'+makelist(sources.home_icon,arr,1)+'</div>'; 
-                            var licnt=2;
-                            for(var i=2;i<arr.length;i++) {
-                                licnt++;
-                                list +='<div class="g'+licnt+'">'+
-                                        makelist(listco(arr[i].color),arr,i)+
-                                        '</div>';
-                            };
-                            $("#list").html(list);
-                            //추가목록만들기
-                            $("#addlist").click(function() {
-                                var listname = prompt("새 목록", "제목 없는 목록");
-                                $.get(groupadd_json,{"id":licnt, "name":listname},function(result, status) {
-                                    try {
-                                        if (result.result != "ok") throw "JSON data //groupAdd.json// Error"
-                                        else {
-                                            result.data[0].name = listname;
-                                            licnt++;
-                                            console.log(licnt);
-                                            $("#list").append(
-                                                '<div class="g'+licnt+'">'+
-                                                makelist(listco(result.data[0].color),result.data,0)+
-                                                '</div>');
-                                        }
-                                    } 
-                                    catch(e) {
-                                        console.log(e)
+            var tasklist_json = "https://kisungkim.github.io/swe3020/todo/json/taskList.json";
+            var taskadd_json = "https://kisungkim.github.io/swe3020/todo/json/taskAdd.json";
+            //grouplist구현
+            $.get(grouplist_json, function(result, status) {
+                try {
+                    if (result.result != "ok") throw "JSON //groupList.json// data Error"
+                    else {
+
+                        var arr = result.data;
+                        var list = make_glist(sources.sun_icon ,arr,0)+
+                                   make_glist(sources.home_icon,arr,1); 
+                        var licnt = 2;
+                        for(var i=2;i<arr.length;i++) {
+                            list +=make_glist(listco(arr[i].color),arr,i);
+                            licnt ++;
+                        };
+
+                        $("#list").html(list);
+                        $("#list li").click(showTask(this.id));
+                        $("#addlist").click(function() {
+                            var listname = prompt("새 목록", "제목 없는 목록");
+                            $.get(groupadd_json,{"id":licnt, "name":listname},function(result, status) {
+                                try {
+                                    if (result.result != "ok") throw "JSON data //groupAdd.json// Error"
+                                    else {
+                                        result.data[0].name = listname;
+                                        $("#list").append(make_glist(listco(result.data[0].color),result.data,0));
                                     }
-                                })
-                            });
-                        
-                        }
-                    }  
-                    catch(e) {
-                        console.log(e);
+                                } 
+                                catch(e) { console.log(e) }
+                            })
+                        });
+
                     }
-                });
-             //div중 addlist는 제외
-            // 버튼 혹은링크를 통해 정보를 보냄// 
+                }  
+                catch(e) { console.log(e); }
+            });
+            //tasklist구현
+
+            var showTask = function(myid) {
+                $.get(tasklist_json, function(data, status) {
+                try {
+                    if (data.result != "ok") throw "JSON data //taskList.json// Error";
+                    else {
+                        var arr = data.data;
+                        var li = "";
+                        for (var i=0;i<arr.length;i++) {
+                            var infoary = 
+                            [arr[i].ttodo, arr[i].talarm, arr[i].tdue, arr[i].trepeat, arr[i].tmemo];
+                            
+                            li += 
+                            '<li>'+
+                            '<div class="t'+i+'">'+
+                                '<input name="done" type="radio">'+
+                                '<div class="detail">'+
+                                    '<div class="name">'+arr[i].tname+'</div>'+
+                                    '<ul id="info">'
+                            
+                            var first = false;
+                            for (var k=0;k<infoary.length;k++) {
+                                if (infoary[k] === "") continue;
+                                else {
+                                    if (first === false) {
+                                        li += '<li class="first">'+infoary[k]+'</li>'
+                                        first = true
+                                    }
+                                    else li += '<li>'+infoary[k]+'</li>'
+                                }
+                            }
+                            li += '</ul></div></div></li>'   
+                                 
+                        }
+                        $("#tlist").html(li);
+                        
+                        for (var i=0;i<arr.length;i++) {
+                            console.log(arr[i].tdone);
+                            if (arr[i].tdone === "true") 
+                                 $(".t"+i+" :radio").prop("checked", true);
+                            else $(".t"+i+" :radio").prop("checked", false); 
+                        } 
+                    }
+                } catch(e) {
+                    console.log(e);
+                }
+            })
+        }
+
+
+
+
             
+            //div중 addlist는 제외
+            // 버튼 혹은링크를 통해 정보를 보냄// 
+            </script>
+            <script>
+            
+
             </script>
         </body>
     </html>

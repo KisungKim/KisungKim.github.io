@@ -21,10 +21,10 @@ li {
     padding : 15px 14px 15px 10px;
     text-align:left;
 }
-.g1 {
+/* .g1 {
     display : inline-block;
     background-color: #CACEE8;
-}
+} */
 #list img, #addlist img {
     position : relative;
     height : 40px;
@@ -38,9 +38,7 @@ li {
     height : 40px;
     margin-left : 20px;
 }
-.g1 #name {
-    top:-9px;
-}
+
 #addlist {      
     color:blue;
     padding-left:14px;
@@ -62,6 +60,4 @@ li {
     color : gray;
     font-size:90%;
 }
-.g1 #count {
-    top:-9px;
-}
+
