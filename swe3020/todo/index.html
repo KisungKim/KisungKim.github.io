@@ -22,9 +22,9 @@
             <section id="tasklist_main">
             <div id="tasklist">
                     <div id="header">
-                        <div id="showgroup">목록</div>
+                        <div id="showgroup">&#9776</div>
                         <div id="gname"></div>
-                        <div id="addtask">추가</div>
+                        <div id="addtask">&#166</div>
                     </div>
                     <div id="content">
                         <ul id="tlist"></ul>
@@ -49,7 +49,8 @@
                     home_icon:"images/home.png",
                     list_b:"images/list_b.png",
                     list_o:"images/list_o.png",
-                    list_g:"images/list_g.png"
+                    list_g:"images/list_g.png",
+                    t_checked:"images/todo_checked.png"
                 }
             var listco = function(color) {
                 switch(color) {
@@ -69,33 +70,35 @@
                             var infoli = "";
                             var infoary = 
                                 [arr[i].ttodo, arr[i].talarm, arr[i].tdue, arr[i].trepeat, arr[i].tmemo];
-                            var first = false;
-                            for (var k=0;k<infoary.length;k++) {
-                                if (infoary[k] === "") continue;
-                                else {
-                                    if (first === false) {
-                                        infoli += '<li class="first">'+infoary[k]+'</li>'
-                                        first = true
+                            if (infoary[0] == undefined) return infoli;
+                            else {
+                                var first = false;
+                                for (var k=0;k<infoary.length;k++) {
+                                    if (infoary[k] === "") continue;
+                                    else {
+                                        if (first === false) {
+                                            infoli += '<li class="first">'+infoary[k]+'</li>'
+                                            first = true
+                                        }
+                                        else infoli += '<li>'+infoary[k]+'</li>'
                                     }
-                                    else infoli += '<li>'+infoary[k]+'</li>'
                                 }
+                                return infoli;
                             }
-                            return infoli;
                         }
             var make_tlist = function(arr_num,arr, tdcnt, f){
                 li = 
                 '<li class="tasks">'+
                 '<div class="'+tdcnt+'">'+
-                    '<input name="done" type="radio">'+
+                    '<input name="done" type="checkbox">'+
                     '<div class="detail">'+
                         '<div class="name">'+arr[arr_num].tname+'</div>'+
                         '<ul id="info">'
+                
                 li += f(arr_num, arr);
                 li += '</ul></div></div></li>'   
                 return li;
             }
-
-            
             //불러오는 json주소
             var grouplist_json = "https://kisungkim.github.io/swe3020/todo/json/groupList.json";    
             var groupadd_json  = "https://kisungkim.github.io/swe3020/todo/json/groupAdd.json";
@@ -136,23 +139,17 @@
                 catch(e) { console.log(e); }
             });
             //tasklist구현
-
             var showTask = function(gid, name, color) {
                 $("#grouplist_main").hide();
-
                 $.get(tasklist_json, function(data, status) {
                 try {
                     if (data.result != "ok") throw "JSON data //taskList.json// Error";
                     else {
                         $("#gname").text(name);
                         $("#header").css('background-color',color);
-                        $("#showgroup").click(function() {
-                            $("#grouplist_main").show();
-                        })
                         var arr = data.data;
                         var tdcnt = 0;
                         var li = "";
-                        
                         for (var i=0;i<arr.length;i++) {
                             if (arr[i].id == gid) {
                                 tdcnt ++;
@@ -160,6 +157,7 @@
                             }                                 
                         }
                         $("#tlist").html(li);
+                        $("#showgroup").click(function() { $("#grouplist_main").show(); })
                         $("#taddlist").click(function(){
                             var tdname = prompt("새 할일", "제목 없는 할일");
                             if (tdname != null) {
@@ -169,20 +167,18 @@
                                         else {
                                             result.data[0].tname = tdname;
                                             tdcnt++;
-                                            $("#tlist").append(make_tlist(0,result.data,tdcnt, infoary));
+                                            $("#tlist").append(make_tlist(0,result.data,tdcnt,infoary));
                                         }
                                     } 
                                     catch(e) { console.log(e) }
                                 })
                             }
-
                         })
-
                         for (var i=0;i<arr.length;i++) {
                             console.log(arr[i].tdone);
                             if (arr[i].tdone === "true") 
-                                 $(".t"+i+" :radio").prop("checked", true);
-                            else $(".t"+i+" :radio").prop("checked", false); 
+                                 $(".t"+i+" :checkbox").prop("checked", true);
+                            else $(".t"+i+" :checkbox").prop("checked", false); 
                         } 
                     }
                 } catch(e) {
@@ -190,11 +186,6 @@
                 }
             })
         }
-
-
-
-
-            
             //div중 addlist는 제외
             // 버튼 혹은링크를 통해 정보를 보냄// 
             </script>
