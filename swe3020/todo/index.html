@@ -29,7 +29,9 @@
                     <div id="content">
                         <ul id="tlist"></ul>
                     </div>
-                    <div id="taddlist"></div>
+                    <div id="taddlist">
+                        <img />
+                    </div>
             </div>
             </section>
 
@@ -156,7 +158,7 @@
                     else {
                         $("#gname").text(name);
                         $("#header").css('background-color',color);
-                        $("#taddlist").css('background-image',addco(color));
+                        $("#taddlist img").attr('src',addco(color));
                         var arr = data.data;
                         var tdcnt = 0;
                         var li = "";
@@ -167,7 +169,17 @@
                             }                                 
                         }
                         $("#tlist").html(li);
-                        $("")
+                        $(".tasks input").click(function() {
+                            if ("none solid rgb(0, 0, 0)"==$(this.nextSibling.firstChild).css('text-decoration')) {
+                                $(this.nextSibling.firstChild).css('text-decoration','line-through')
+                                $.get(tasklist_json, {"tdone":"true"});
+                            }
+                            else {
+                                $(this.nextSibling.firstChild).css('text-decoration', 'none');
+                                $.get(tasklist_json, {"tdone":"false"});
+
+                            }
+                        })
                         $("#showgroup").click(function() { $("#grouplist_main").show(); })
                         $("#taddlist").click(function(){
                             var tdname = prompt("새 할일", "제목 없는 할일");
@@ -184,25 +196,13 @@
                                     catch(e) { console.log(e) }
                                 })
                             }
-                        })
-                        for (var i=0;i<arr.length;i++) {
-                            console.log(arr[i].tdone);
-                            if (arr[i].tdone === "true") 
-                                 $(".t"+i+" :checkbox").prop("checked", true);
-                            else $(".t"+i+" :checkbox").prop("checked", false); 
-                        } 
+                        }) 
                     }
                 } catch(e) {
                     console.log(e);
                 }
             })
         }
-            //div중 addlist는 제외
-            // 버튼 혹은링크를 통해 정보를 보냄// 
-            </script>
-            <script>
-            
-
             </script>
         </body>
     </html>
