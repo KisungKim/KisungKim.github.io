@@ -21,11 +21,15 @@
             
             <section id="tasklist_main">
             <div id="tasklist">
-                    <div id="header"></div>
+                    <div id="header">
+                        <div id="showgroup">목록</div>
+                        <div id="gname"></div>
+                        <div id="addtask">추가</div>
+                    </div>
                     <div id="content">
                         <ul id="tlist"></ul>
                     </div>
-                    <div id="taddlist"></div>
+                    <div id="taddlist">테스팅</div>
             </div>
             </section>
 
@@ -61,6 +65,37 @@
                             '<span id="count">'+ary[ary_num].count+'</span>'+
                        '</li>';
             }
+            var infoary = function(i, arr) {
+                            var infoli = "";
+                            var infoary = 
+                                [arr[i].ttodo, arr[i].talarm, arr[i].tdue, arr[i].trepeat, arr[i].tmemo];
+                            var first = false;
+                            for (var k=0;k<infoary.length;k++) {
+                                if (infoary[k] === "") continue;
+                                else {
+                                    if (first === false) {
+                                        infoli += '<li class="first">'+infoary[k]+'</li>'
+                                        first = true
+                                    }
+                                    else infoli += '<li>'+infoary[k]+'</li>'
+                                }
+                            }
+                            return infoli;
+                        }
+            var make_tlist = function(arr_num,arr, tdcnt, f){
+                li = 
+                '<li class="tasks">'+
+                '<div class="'+tdcnt+'">'+
+                    '<input name="done" type="radio">'+
+                    '<div class="detail">'+
+                        '<div class="name">'+arr[arr_num].tname+'</div>'+
+                        '<ul id="info">'
+                li += f(arr_num, arr);
+                li += '</ul></div></div></li>'   
+                return li;
+            }
+
+            
             //불러오는 json주소
             var grouplist_json = "https://kisungkim.github.io/swe3020/todo/json/groupList.json";    
             var groupadd_json  = "https://kisungkim.github.io/swe3020/todo/json/groupAdd.json";
@@ -71,7 +106,6 @@
                 try {
                     if (result.result != "ok") throw "JSON //groupList.json// data Error"
                     else {
-
                         var arr = result.data;
                         var list = make_glist(sources.sun_icon ,arr,0)+
                                    make_glist(sources.home_icon,arr,1); 
@@ -80,64 +114,70 @@
                             list +=make_glist(listco(arr[i].color),arr,i);
                             licnt ++;
                         };
-
                         $("#list").html(list);
-                        $("#list li").click(showTask(this.id));
+                        $("#list li").click(function() { showTask(this.id, arr[this.id-1].name, arr[this.id-1].color)} );
                         $("#addlist").click(function() {
                             var listname = prompt("새 목록", "제목 없는 목록");
-                            $.get(groupadd_json,{"id":licnt, "name":listname},function(result, status) {
-                                try {
-                                    if (result.result != "ok") throw "JSON data //groupAdd.json// Error"
-                                    else {
-                                        result.data[0].name = listname;
-                                        $("#list").append(make_glist(listco(result.data[0].color),result.data,0));
-                                    }
-                                } 
-                                catch(e) { console.log(e) }
-                            })
-                        });
-
+                            if (listname != null) {
+                                $.get(groupadd_json,{"id":licnt, "name":listname},function(result, status) {
+                                    try {
+                                        if (result.result != "ok") throw "JSON data //groupAdd.json// Error"
+                                        else {
+                                            result.data[0].name = listname;
+                                            $("#list").append(make_glist(listco(result.data[0].color),result.data,0));
+                                        }
+                                    } 
+                                    catch(e) { console.log(e) }
+                                })
+                            }
+                        })
                     }
                 }  
                 catch(e) { console.log(e); }
             });
             //tasklist구현
 
-            var showTask = function(myid) {
+            var showTask = function(gid, name, color) {
+                $("#grouplist_main").hide();
+
                 $.get(tasklist_json, function(data, status) {
                 try {
                     if (data.result != "ok") throw "JSON data //taskList.json// Error";
                     else {
+                        $("#gname").text(name);
+                        $("#header").css('background-color',color);
+                        $("#showgroup").click(function() {
+                            $("#grouplist_main").show();
+                        })
                         var arr = data.data;
+                        var tdcnt = 0;
                         var li = "";
+                        
                         for (var i=0;i<arr.length;i++) {
-                            var infoary = 
-                            [arr[i].ttodo, arr[i].talarm, arr[i].tdue, arr[i].trepeat, arr[i].tmemo];
-                            
-                            li += 
-                            '<li>'+
-                            '<div class="t'+i+'">'+
-                                '<input name="done" type="radio">'+
-                                '<div class="detail">'+
-                                    '<div class="name">'+arr[i].tname+'</div>'+
-                                    '<ul id="info">'
-                            
-                            var first = false;
-                            for (var k=0;k<infoary.length;k++) {
-                                if (infoary[k] === "") continue;
-                                else {
-                                    if (first === false) {
-                                        li += '<li class="first">'+infoary[k]+'</li>'
-                                        first = true
-                                    }
-                                    else li += '<li>'+infoary[k]+'</li>'
-                                }
-                            }
-                            li += '</ul></div></div></li>'   
-                                 
+                            if (arr[i].id == gid) {
+                                tdcnt ++;
+                                li += make_tlist(i, arr, tdcnt, infoary);   
+                            }                                 
                         }
                         $("#tlist").html(li);
-                        
+                        $("#taddlist").click(function(){
+                            var tdname = prompt("새 할일", "제목 없는 할일");
+                            if (tdname != null) {
+                                $.get(taskadd_json,{"id":gid, "name":tdname, "tid":tdcnt},function(result, status) {
+                                    try {
+                                        if (result.result != "ok") throw "JSON data //groupAdd.json// Error"
+                                        else {
+                                            result.data[0].tname = tdname;
+                                            tdcnt++;
+                                            $("#tlist").append(make_tlist(0,result.data,tdcnt, infoary));
+                                        }
+                                    } 
+                                    catch(e) { console.log(e) }
+                                })
+                            }
+
+                        })
+
                         for (var i=0;i<arr.length;i++) {
                             console.log(arr[i].tdone);
                             if (arr[i].tdone === "true") 
