@@ -6,7 +6,7 @@
             "id":1,
             "tid":1, 
             "tname":"셀러확인",
-            "tdone":"False",
+            "tdone":"true",
                         
             "ttodo":"",
             "talarm":"yes",

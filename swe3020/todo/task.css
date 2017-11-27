@@ -2,7 +2,17 @@
     font-family:NanumGothic;
     src:url("https://fonts.googleapis.com/earlyaccess/nanumgothic.css")format("css");
 }
-ul { 
+ul {
+    -webkit-padding-start: 0px;    
+}
+#list { 
     list-style:none;
-    -webkit-padding-start: 0px;
+}
+.detail {
+    display:inline-block;
+}
+#info li{ 
+    display:inline-block;
+    list-style-type: disc;
+    margin-left:10px;
 }

@@ -32,15 +32,17 @@
                                    '<span id="count">'+ary[ary_num].count+'</span></li>';
                         }
                         for (var i=0;i<arr.length;i++) {
-                            var infoary = [arr[i].ttodo, arr[i].talarm, arr[i].tdue, arr[i].trepeat, arr[i].tmemo];
-            
+                            var infoary = 
+                            [arr[i].ttodo, arr[i].talarm, arr[i].tdue, arr[i].trepeat, arr[i].tmemo];
+                            
                             li += 
                             '<li>'+
                             '<div class="t'+i+'">'+
-                                '<span class="done">'+arr[i].tdone+'</span>'+
+                                '<input name="done" type="radio">'+
                                 '<div class="detail">'+
                                     '<div class="name">'+arr[i].tname+'</div>'+
                                     '<ul id="info">'
+                            
                             var first = false;
                             for (var k=0;k<infoary.length;k++) {
                                 if (infoary[k] === "") continue;
@@ -52,9 +54,22 @@
                                     else li += '<li>'+infoary[k]+'</li>'
                                 }
                             }
-                            li += '</ul></div></div></li>'          
+                            li += '</ul></div></div></li>'   
+                                 
                         }
                         $("#list").html(li);
+                        
+                        for (var i=0;i<arr.length;i++) {
+                            console.log(arr[i].tdone);
+                            if (arr[i].tdone == "true") {
+                                $(":radio").prop("checked", true);
+                                console.log("test")
+                            }
+                            else {
+                                $(":radio").prop("checked", false); 
+                                console.log("test-")
+                            }
+                        } 
                     }
                 } catch(e) {
                     console.log(e);
