@@ -8,6 +8,13 @@
             "tname":"셀러확인",
             "tdue":"today",            
             "tdone":"False"
+        },
+        {
+            "id":1,
+            "tid":2, 
+            "tname":"컴퓨터활용능력",
+            "tdue":"2018-03-05",            
+            "tdone":"False"
         }
     ]
 }

@@ -1,20 +1,55 @@
 <html>
-    <head></head>
+    <head>
+
+
+    </head>
     <body>
-        <div>hello</div>
-    
-    <script
-            src="https://code.jquery.com/jquery-3.2.1.min.js"
-            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-            crossorigin="anonymous">
-            </script>
-<script>    
-$(div).click(function() {
-    $.get("https://kisungkim.github.io/swe3020/todo/task.html", function(data, status) {
-        document.write(data);
-    })
-})
-</script>
+        <div id="tasklist">
+            <div id="header"></div>
+            <div id="content">
+                <ul id="list"></ul>
+            </div>
+            <div id="addlist"></div>
+        </div>
+
+        <script
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+        integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+        crossorigin="anonymous">
+        </script>
+        <script>
+            var tasklist_json = "https://kisungkim.github.io/swe3020/todo/json/taskList.json";
+            var taskadd_json = "https://kisungkim.github.io/swe3020/todo/json/taskAdd.json";
+            $.get(tasklist_json, function(data, status) {
+                try {
+                    if (data.result != "ok") throw "JSON data //taskList.json// Error";
+                    else {
+                        var arr = data.data;
+                        console.log(arr)
+                    }
+                } catch(e) {
+                    console.log(e);
+                }
+            })
+            // index에서 보낸 id를 통해 json파일에서 name, color받아와야함
+                // 전체적인 스타일에서 그림자 형태로 아래가 이어져야함
+                // color은 상단의 nav바 색으로. 이름은 가운데.
+                // 오른쪽 :(점3개) 클릭하면 나오는 목록 6개 페이지 만들어만 놓기
+                // 왼쪽 =(바3개) 클릭하면 슬라이드형태로 index.html나타나도록 하기
+            //  9개 반정도 들어갈 칸으로 div나누기(할일화면)
+                // 전체적인 형태는 ul로 만들어야한다
+                // 왼쪽에 div=inlineblock으로 동그라미(여기도 color적용), 했을때 색 회색으로 바뀌며
+                // 지우기. 또한 동그라미 형태도 바뀌게 된다, tasklist.json에서 tdone에 정보를 보내야한다
+                // 오른쪽 div=inlineblock에서는 위쪽에 tasklist.json의  tname을 받아야 한다
+                //                             아래쪽에서는 상세정보가 표시되어야 한다
+                // 상세정보의 경우 기한이 남았으면 (알림표시시) 회색(살짝 진함), 
+                // 기한이 지났으면 빨간색
+                // 오늘이면 파란색의 속성을 추가해줘야한다
+                // 알림이 ul(inline형태로) 달력사진 맨 앞에 나와야 하며 나머지는 list형태 그대로
+                // 즉 맨 앞에는 고유한 아이콘 , 뒤에는 점으로
+            // 하단 float 형태로 groupList.json 에서 받은 컬러를 통해 오른쪽 할일추가 추가
+                // 눌렀을 때 form의 형태가 나와야 한다??
+        </script>
     </body>
 </html>
 

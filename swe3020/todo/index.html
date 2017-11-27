@@ -46,58 +46,55 @@
                        '<span id="count">'+ary[ary_num].count+'</span></li>';
             }
             //불러오는 json주소
-            var grouplist_json = "https://kisungkim.github.io/swe3020/todo/json/groupList.json"    
-            var groupadd_json  = "https://kisungkim.github.io/swe3020/todo/json/groupAdd.json"
+            var grouplist_json = "https://kisungkim.github.io/swe3020/todo/json/groupList.json";    
+            var groupadd_json  = "https://kisungkim.github.io/swe3020/todo/json/groupAdd.json";
             //목록만들기
-            $.get(grouplist_json, function(result, status) {
-                try {
-                    if (result.result != "ok") throw "JSON //groupList.json// data Error"
-                    else {
-                        var arr = result.data;
-                        var list = '<div class="g1">'+makelist(sources.sun_icon ,arr,0)+'</div>'+
-                                   '<div class="g2">'+makelist(sources.home_icon,arr,1)+'</div>'; 
-                        var licnt=2;
-                        for(var i=2;i<arr.length;i++) {
-                            licnt++;
-                            list +='<div class="g'+licnt+'">'+
-                                    makelist(listco(arr[i].color),arr,i)+
-                                    '</div>';
-                        };
-                        $("#list").html(list);
-                        //추가목록만들기
-                        $("#addlist").click(function() {
-                            var listname = prompt("새 목록", "제목 없는 목록");
-                            $.get(groupadd_json,{"id":licnt, "name":listname},function(result, status) {
-                                try {
-                                    if (result.result != "ok") throw "JSON data //groupAdd.json// Error"
-                                    else {
-                                        result.data[0].name = listname;
-                                        licnt++;
-                                        console.log(licnt);
-                                        $("#list").append(
-                                            '<div class="g'+licnt+'">'+
-                                            makelist(listco(result.data[0].color),result.data,0)+
-                                            '</div>');
+                $.get(grouplist_json, function(result, status) {
+                    try {
+                        if (result.result != "ok") throw "JSON //groupList.json// data Error"
+                        else {
+                            var arr = result.data;
+                            var list = '<div class="g1">'+makelist(sources.sun_icon ,arr,0)+'</div>'+
+                                    '<div class="g2">'+makelist(sources.home_icon,arr,1)+'</div>'; 
+                            var licnt=2;
+                            for(var i=2;i<arr.length;i++) {
+                                licnt++;
+                                list +='<div class="g'+licnt+'">'+
+                                        makelist(listco(arr[i].color),arr,i)+
+                                        '</div>';
+                            };
+                            $("#list").html(list);
+                            //추가목록만들기
+                            $("#addlist").click(function() {
+                                var listname = prompt("새 목록", "제목 없는 목록");
+                                $.get(groupadd_json,{"id":licnt, "name":listname},function(result, status) {
+                                    try {
+                                        if (result.result != "ok") throw "JSON data //groupAdd.json// Error"
+                                        else {
+                                            result.data[0].name = listname;
+                                            licnt++;
+                                            console.log(licnt);
+                                            $("#list").append(
+                                                '<div class="g'+licnt+'">'+
+                                                makelist(listco(result.data[0].color),result.data,0)+
+                                                '</div>');
+                                        }
+                                    } 
+                                    catch(e) {
+                                        console.log(e)
                                     }
-                                } 
-                                catch(e) {
-                                    console.log(e)
-                                }
-                            })
-                        });
-                        //div중 addlist는 제외
-                        //html에 get방식으로 추가
-                        $("#list div").click(function(){
-                            $.get("https://kisungkim.github.io/swe3020/todo/task.html", function(data, status) {
-                             document.write(data);
-                            })
-                        });
+                                })
+                            });
+                        
+                        }
+                    }  
+                    catch(e) {
+                        console.log(e);
                     }
-                }  
-                catch(e) {
-                    console.log(e);
-                }
-            });
+                });
+             //div중 addlist는 제외
+            // 버튼 혹은링크를 통해 정보를 보냄// 
+            
             </script>
         </body>
     </html>
