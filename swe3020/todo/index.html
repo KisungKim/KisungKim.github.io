@@ -29,7 +29,7 @@
                     <div id="content">
                         <ul id="tlist"></ul>
                     </div>
-                    <div id="taddlist">테스팅</div>
+                    <div id="taddlist"></div>
             </div>
             </section>
 
@@ -50,13 +50,22 @@
                     list_b:"images/list_b.png",
                     list_o:"images/list_o.png",
                     list_g:"images/list_g.png",
-                    t_checked:"images/todo_checked.png"
+                    add_b:"images/add_b.png",
+                    add_g:"images/add_g.png",
+                    add_o:"images/add_o.png"
                 }
             var listco = function(color) {
                 switch(color) {
                     case "blue"  : return sources.list_b;
                     case "red"   : return sources.list_o;
                     case "green" : return sources.list_g;
+                }
+            }
+            var addco = function(color) {
+                switch(color) {
+                    case "blue"  : return sources.add_b;
+                    case "red"   : return sources.add_o;
+                    case "green" : return sources.add_g;
                 }
             }
             var make_glist = function(imgsrc,ary,ary_num) {
@@ -147,6 +156,7 @@
                     else {
                         $("#gname").text(name);
                         $("#header").css('background-color',color);
+                        $("#taddlist").css('background-image',addco(color));
                         var arr = data.data;
                         var tdcnt = 0;
                         var li = "";
@@ -157,6 +167,7 @@
                             }                                 
                         }
                         $("#tlist").html(li);
+                        $("")
                         $("#showgroup").click(function() { $("#grouplist_main").show(); })
                         $("#taddlist").click(function(){
                             var tdname = prompt("새 할일", "제목 없는 할일");
