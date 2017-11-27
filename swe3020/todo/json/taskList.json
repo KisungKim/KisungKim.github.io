@@ -6,15 +6,25 @@
             "id":1,
             "tid":1, 
             "tname":"셀러확인",
-            "tdue":"today",            
-            "tdone":"False"
+            "tdone":"False",
+                        
+            "ttodo":"",
+            "talarm":"yes",
+            "tdue":"",
+            "trepeat":"",            
+            "tmemo":"hello"
         },
         {
             "id":1,
             "tid":2, 
             "tname":"컴퓨터활용능력",
+            "tdone":"False",
+            
+            "ttodo":"",
+            "talarm":"no",
             "tdue":"2018-03-05",            
-            "tdone":"False"
+            "trepeat":"",            
+            "tmemo":"hi"
         }
     ]
 }

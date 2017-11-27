@@ -1,7 +1,6 @@
 <html>
     <head>
-
-
+        <link type="text/css" rel="stylesheet" href="task.css">            
     </head>
     <body>
         <div id="tasklist">
@@ -25,7 +24,37 @@
                     if (data.result != "ok") throw "JSON data //taskList.json// Error";
                     else {
                         var arr = data.data;
-                        console.log(arr)
+                        var li = "";
+
+                        var maketlist = function(imgsrc,ary,ary_num) {
+                            return '<li><img src="'+imgsrc+'"/>'+
+                                   '<span id="name">' +ary[ary_num].name+'</span>'+
+                                   '<span id="count">'+ary[ary_num].count+'</span></li>';
+                        }
+                        for (var i=0;i<arr.length;i++) {
+                            var infoary = [arr[i].ttodo, arr[i].talarm, arr[i].tdue, arr[i].trepeat, arr[i].tmemo];
+            
+                            li += 
+                            '<li>'+
+                            '<div class="t'+i+'">'+
+                                '<span class="done">'+arr[i].tdone+'</span>'+
+                                '<div class="detail">'+
+                                    '<div class="name">'+arr[i].tname+'</div>'+
+                                    '<ul id="info">'
+                            var first = false;
+                            for (var k=0;k<infoary.length;k++) {
+                                if (infoary[k] === "") continue;
+                                else {
+                                    if (first === false) {
+                                        li += '<li class="first">'+infoary[k]+'</li>'
+                                        first = true
+                                    }
+                                    else li += '<li>'+infoary[k]+'</li>'
+                                }
+                            }
+                            li += '</ul></div></div></li>'          
+                        }
+                        $("#list").html(li);
                     }
                 } catch(e) {
                     console.log(e);
