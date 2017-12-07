@@ -3,7 +3,7 @@
             <!-- 스타일을 지정 -->
             <link type="text/css" rel="stylesheet" href="index.css">
             <link type="text/css" rel="stylesheet" href="task.css">            
-            
+            <link type="text/css" rel="stylesheet" href="cellar.css">
         </head>
         <body>
             <!-- 레이아웃을 지정 -->
@@ -40,6 +40,7 @@
                     <div id="back">뒤로가기</div>
                     <div id="cellarName"></div>
                     <div id="ccontent"></div>
+                    <input type="textarea"/>
                 </div>
             </section>
 
@@ -62,7 +63,13 @@
                     list_g:"images/list_g.png",
                     add_b:"images/add_b.png",
                     add_g:"images/add_g.png",
-                    add_o:"images/add_o.png"
+                    add_o:"images/add_o.png",
+                    due:"images/due.png",
+                    due_out:"images/outdated.png",
+                    alarm:"images/alarm.png",
+                    alarm_check:"images/alarm_selected.png",
+                    repeat:"images/repeat.png",
+                    repeat_check:"images/repeat_selected.png"
                 }
             var listco = function(color) {
                 switch(color) {
@@ -185,7 +192,6 @@
                         }
                         $("#tlist").html(li);
                         $(".tasks input").click(function() {
-                            console.log(this);
                             if ("none solid rgb(0, 0, 0)"==$(this.nextSibling.firstChild).css('text-decoration')) {
                                 $(this.nextSibling.firstChild).css('text-decoration','line-through')
                                 $.get(tasklist_json, {"tdone":"true"});
@@ -193,37 +199,31 @@
                             else {
                                 $(this.nextSibling.firstChild).css('text-decoration', 'none');
                                 $.get(tasklist_json, {"tdone":"false"});
-                                //.nextSibling.firstChild
                             }
                         })
                         $("#tlist .tasks .detail").click(function(e) {
                             $("#tasklist_main").hide();
                             $("#cellar_main").show();
                             var mymsg = arr[$(e.currentTarget).parent()[0].className-1];            
-                            var temp = ['todo','alarm','due','repeat','memo'];
+                            var temp = ['todo','alarm','due','repeat'];
                             var msg = [
-                                (mymsg.ttodo=="")  ? "나의 하루에 추가" : mymsg.ttodo,
-                                ,(mymsg.talarm=="") ? "미리 알림" : mymsg.talarm,
-                                ,(mymsg.tdue=="")   ? "기한 설정" : mymsg.tdue,
-                                ,(mymsg.tdue == "") ? "" : (
-                                      (mymsg.trepeat == "") ? "반복" : mymsg.trepeat),
-                                ,(mymsg.tmemo=="")  ? "노트 추가" : mymsg.tmemo
+                                (mymsg.ttodo=="")  ? 
+                                    ["나의 하루에 추가", sources.sun_icon] : [mymsg.ttodo, sources.sun_icon],
+                                (mymsg.talarm=="") ? 
+                                    ["미리 알림", sources.alarm] : [mymsg.talarm, sources.alarm_check],
+                                (mymsg.tdue=="")   ? 
+                                    ["기한 설정", sources.due] : [mymsg.tdue, sources.due],
+                                (mymsg.tdue == "") ? ["",""] : (
+                                      (mymsg.trepeat == "") ? 
+                                        ["반복", sources.repeat] : [mymsg.trepeat, sources.repeat_check]),
                             ]
-                            $("#cellarName").text(mymsg.tname);
-                            console.log(msg[0]);
+                            $("#cellarName").html(mymsg.tname);
                             var s = "";
                             for (var i=0;i<temp.length;i++) {
-                                s += '<img src/>' +
-                                     '<div class="'+temp[i]+'">'+msg[i]+'</div>'
+                                s += '<img src="'+msg[i][1]+'"/>' +
+                                     '<div class="'+temp[i]+'">'+msg[i][0]+'</div>'
                             }
                             $("#ccontent").html(s);
-                            // console.log(msg);
-                            // $("#todo").text(msg.ttodo);
-                            // $("#alarm").text(msg.talarm);
-                            // $("#due").text(msg.tdue);
-                            // $("#repeat").text(msg.trepeat);
-                            // $("#memo").text(msg.tmemo);
-
                             $.get(grouplist_json, function(result, status) {
                                 var arr = result.data;
                                 $("#back").click(function() {
