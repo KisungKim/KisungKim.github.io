@@ -39,11 +39,7 @@
                 <div id="cellar">
                     <div id="back">뒤로가기</div>
                     <div id="cellarName"></div>
-                    <div id="addTodo"></div>
-                    <div id="alarm"></div>
-                    <div id="due"></div>
-                    <div id="repeat"></div>
-                    <div id="memo"></div>
+                    <div id="ccontent"></div>
                 </div>
             </section>
 
@@ -128,6 +124,7 @@
             var tasklist_json = "https://kisungkim.github.io/swe3020/todo/json/taskList.json";
             var taskadd_json = "https://kisungkim.github.io/swe3020/todo/json/taskAdd.json";
             //grouplist구현
+
             var showgroup = function () {
             $("#tasklist_main").hide();
             $.get(grouplist_json, function(result, status) {
@@ -188,6 +185,7 @@
                         }
                         $("#tlist").html(li);
                         $(".tasks input").click(function() {
+                            console.log(this);
                             if ("none solid rgb(0, 0, 0)"==$(this.nextSibling.firstChild).css('text-decoration')) {
                                 $(this.nextSibling.firstChild).css('text-decoration','line-through')
                                 $.get(tasklist_json, {"tdone":"true"});
@@ -195,32 +193,45 @@
                             else {
                                 $(this.nextSibling.firstChild).css('text-decoration', 'none');
                                 $.get(tasklist_json, {"tdone":"false"});
-
+                                //.nextSibling.firstChild
                             }
                         })
-                        $("#content #tlist .tasks div").click(function() {
+                        $("#tlist .tasks .detail").click(function(e) {
                             $("#tasklist_main").hide();
-                            var mymsg = arr[this.className-1];            
-                            var msg = {
-                                ttodo:   (mymsg.ttodo=="")  ? "나의 하루에 추가" : mymsg.ttodo,
-                                talarm:  (mymsg.talarm=="") ? "미리 알림" : mymsg.talarm,
-                                tdue:    (mymsg.tdue=="")   ? "기한 설정" : mymsg.tdue,
-                                trepeat: (mymsg.tdue == "") ? "" : (
+                            $("#cellar_main").show();
+                            var mymsg = arr[$(e.currentTarget).parent()[0].className-1];            
+                            var temp = ['todo','alarm','due','repeat','memo'];
+                            var msg = [
+                                (mymsg.ttodo=="")  ? "나의 하루에 추가" : mymsg.ttodo,
+                                ,(mymsg.talarm=="") ? "미리 알림" : mymsg.talarm,
+                                ,(mymsg.tdue=="")   ? "기한 설정" : mymsg.tdue,
+                                ,(mymsg.tdue == "") ? "" : (
                                       (mymsg.trepeat == "") ? "반복" : mymsg.trepeat),
-                                tmemo:   (mymsg.tmemo=="")  ? "노트 추가" : mymsg.tmemo
-                            }
+                                ,(mymsg.tmemo=="")  ? "노트 추가" : mymsg.tmemo
+                            ]
                             $("#cellarName").text(mymsg.tname);
-                            $("#addTodo").text(msg.ttodo);
-                            $("#alarm").text(msg.talarm);
-                            $("#due").text(msg.tdue);
-                            $("#repeat").text(msg.trepeat);
-                            $("#memo").text(msg.tmemo);
-                            $("back").click(function() {
-                                $("#cellar_main").hide();
-                                // showTask(this.id, arr[this.id-1].name, arr[this.id-1].color);
+                            console.log(msg[0]);
+                            var s = "";
+                            for (var i=0;i<temp.length;i++) {
+                                s += '<img src/>' +
+                                     '<div class="'+temp[i]+'">'+msg[i]+'</div>'
+                            }
+                            $("#ccontent").html(s);
+                            // console.log(msg);
+                            // $("#todo").text(msg.ttodo);
+                            // $("#alarm").text(msg.talarm);
+                            // $("#due").text(msg.tdue);
+                            // $("#repeat").text(msg.trepeat);
+                            // $("#memo").text(msg.tmemo);
 
+                            $.get(grouplist_json, function(result, status) {
+                                var arr = result.data;
+                                $("#back").click(function() {
+                                    $("#cellar_main").hide();
+                                    $("#tasklist_main").show();
+                                    showTask(mymsg.id, arr[mymsg.id-1].name, arr[mymsg.id-1].color);
+                                })
                             })
-                            
                         })
                         $("#showgroup").click(function() { 
                             $("#grouplist_main").show();
