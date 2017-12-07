@@ -9,7 +9,7 @@
             "tdone":"true",
                         
             "ttodo":"",
-            "talarm":"yes",
+            "talarm":"09:00에 미리 알리기",
             "tdue":"",
             "trepeat":"",            
             "tmemo":"hello"
@@ -21,8 +21,8 @@
             "tdone":"False",
             
             "ttodo":"",
-            "talarm":"no",
-            "tdue":"2018-03-05",            
+            "talarm":"",
+            "tdue":"내일까지",            
             "trepeat":"",            
             "tmemo":"hi"
         }
