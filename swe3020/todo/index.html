@@ -35,6 +35,18 @@
             </div>
             </section>
 
+            <section id="cellar_main">
+                <div id="cellar">
+                    <div id="back">뒤로가기</div>
+                    <div id="cellarName"></div>
+                    <div id="addTodo"></div>
+                    <div id="alarm"></div>
+                    <div id="due"></div>
+                    <div id="repeat"></div>
+                    <div id="memo"></div>
+                </div>
+            </section>
+
             <!-- JQUERY -->
             <script
             src="https://code.jquery.com/jquery-3.2.1.min.js"
@@ -104,10 +116,10 @@
                     '<input name="done" type="checkbox">'+
                     '<div class="detail">'+
                         '<div class="name">'+arr[arr_num].tname+'</div>'+
-                        '<ul id="info">'
-                
-                li += f(arr_num, arr);
-                li += '</ul></div></div></li>'   
+                        '<ul id="info">' + f(arr_num, arr) + '</ul>'+
+                    '</div>' + 
+                '</div>' + 
+                '</li>'   
                 return li;
             }
             //불러오는 json주소
@@ -116,6 +128,8 @@
             var tasklist_json = "https://kisungkim.github.io/swe3020/todo/json/taskList.json";
             var taskadd_json = "https://kisungkim.github.io/swe3020/todo/json/taskAdd.json";
             //grouplist구현
+            var showgroup = function () {
+            $("#tasklist_main").hide();
             $.get(grouplist_json, function(result, status) {
                 try {
                     if (result.result != "ok") throw "JSON //groupList.json// data Error"
@@ -129,7 +143,10 @@
                             licnt ++;
                         };
                         $("#list").html(list);
-                        $("#list li").click(function() { showTask(this.id, arr[this.id-1].name, arr[this.id-1].color)} );
+                        $("#list li").click(function() {
+                            $("#tasklist_main").show();
+                            showTask(this.id, arr[this.id-1].name, arr[this.id-1].color);
+                            });
                         $("#addlist").click(function() {
                             var listname = prompt("새 목록", "제목 없는 목록");
                             if (listname != null) {
@@ -149,6 +166,7 @@
                 }  
                 catch(e) { console.log(e); }
             });
+            }
             //tasklist구현
             var showTask = function(gid, name, color) {
                 $("#grouplist_main").hide();
@@ -180,7 +198,34 @@
 
                             }
                         })
-                        $("#showgroup").click(function() { $("#grouplist_main").show(); })
+                        $("#tlist .tasks > div").click(function() {
+                            $("#tasklist_main").hide();
+                            var mymsg = arr[this.className-1];            
+                            var msg = {
+                                ttodo:   (mymsg.ttodo=="")  ? "나의 하루에 추가" : mymsg.ttodo,
+                                talarm:  (mymsg.talarm=="") ? "미리 알림" : mymsg.talarm,
+                                tdue:    (mymsg.tdue=="")   ? "기한 설정" : mymsg.tdue,
+                                trepeat: (mymsg.tdue == "") ? "" : (
+                                      (mymsg.trepeat == "") ? "반복" : mymsg.trepeat),
+                                tmemo:   (mymsg.tmemo=="")  ? "노트 추가" : mymsg.tmemo
+                            }
+                            $("#cellarName").text(mymsg.tname);
+                            $("#addTodo").text(msg.ttodo);
+                            $("#alarm").text(msg.talarm);
+                            $("#due").text(msg.tdue);
+                            $("#repeat").text(msg.trepeat);
+                            $("#memo").text(msg.tmemo);
+                            $("back").click(function() {
+                                $("#cellar_main").hide();
+                                // showTask(this.id, arr[this.id-1].name, arr[this.id-1].color);
+
+                            })
+                            
+                        })
+                        $("#showgroup").click(function() { 
+                            $("#grouplist_main").show();
+                            showgroup();
+                             })
                         $("#taddlist").click(function(){
                             var tdname = prompt("새 할일", "제목 없는 할일");
                             if (tdname != null) {
@@ -203,6 +248,7 @@
                 }
             })
         }
+        showgroup();
             </script>
         </body>
     </html>
