@@ -29,19 +29,19 @@ ul {
     margin : 0px;
     height : 900px;
 }
-#tlist .tasks {
+#tlist .tEl {
     border-bottom:solid gray 1px;
     width:870px;
     height:100px;
 }
-.tasks input {
+.tEl input {
     width: 50px;
     height : 50px;
 }
-.tasks .name {
+.tEl .detail {
     font-size:30px;
 }
-.detail {
+.tEl .detail {
     margin-left:30px; 
     display:inline-block;
 }
@@ -50,10 +50,10 @@ ul {
     list-style-type: disc;
     margin-left:10px;
 }
-#taddlist img{
-    position:relative;
+#header img{
+    position:absolute;
     left:700px;
     display:inline-block;
-    height: 100px;
+    height:100px;
     width:100px;
 }
