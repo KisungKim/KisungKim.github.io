@@ -24,16 +24,21 @@
             <!-- 동작을 지정 -->
             <script>
             //grouplist구현
-            mainId = location.search.substr(4)-1;
-            console.log(mainId);
+            mainId = location.search.substr(4);
             function renderTheme($data) {
             //css 수정이 필요합니다*********** 및 스타일전환필요
-                $("#header").css('background-color',$data.data[mainId].color)
+                var data = $data.data;
+                for (var i=0;i<data.length;i++) {
+                    if (mainId == data[i].id) {
+                        data = data[i]; break;
+                    } 
+                }
+                $("#header").css('background-color',data.color)
                             .append(
                                 '<div id="showgroup">&#9776</div>'+
-                                '<div id="gname">'+$data.data[mainId].name+'</div>'+
+                                '<div id="gname">'+data.name+'</div>'+
                                 '<div id="edit">&#166</div>'+
-                                '<div id="taddlist">'+colored_icon("taskIcon",$data.data[mainId].color)+'</div>'
+                                '<div id="taddlist">'+colored_icon("taskIcon",data.color)+'</div>'
                             )
             }
             function renderList($data) {
