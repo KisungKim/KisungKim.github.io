@@ -26,13 +26,11 @@
 
             <!-- 동작을 지정 -->
             <script>
-                console.log("check");
             //grouplist구현
                function renderList($data) {
 //css 수정이 필요합니다***********
                     var data = $data.data;
-                    console.log("tdst");
-                    console.log(data);
+                    console.log(data[0].id);
                     $("#list").append (
                         '<li class="gEl" onclick="network(\'eachList\', null, \''+data[0].id+'\')">'+
                             '<img src="'+FILES.groupIcon.sun_icon+'"/>'+

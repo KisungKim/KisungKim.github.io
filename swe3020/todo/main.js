@@ -39,10 +39,11 @@ function network(command, end, arg) {
             location.href = URLS.prefix + URLS.eachList + "?id="  + encodeURIComponent(arg);
             break;
         case "groupAdd":
-            $.get(URLS.prefix+URLS.groupAdd, {"name":arg}, end);
+            $.get(URLS.prefix+URLS.groupAdd,{"name":arg}, end);
             // 서버가 없어도 이런 테스팅이 가능하다
-            //data.data.push({name:args...})
-            //end(data)
+            // data[0].push({"name":arg})
+            // end(data)
+            // console.log(data)
             break;
         case "groupList":
            $.get(URLS.prefix+URLS.groupList, end);
