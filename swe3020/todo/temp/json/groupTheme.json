@@ -1,0 +1,19 @@
+{
+    "result":"ok",
+    "data":[
+            {"co_id":0,"color":"blue", "selected":"True"},
+            {"co_id":1,"color":"peach", "selected":"False"},
+            {"co_id":2,"color":"purple", "selected":"False"},
+            {"co_id":3,"color":"green", "selected":"False"},
+            {"co_id":4,"color":"sky", "selected":"False"},
+            
+            {"im_id":0,"image":"mountain", "selected":"True"},
+            {"im_id":1,"image":"travel", "selected":"False"},
+            {"im_id":2,"image":"cabin", "selected":"False"},
+            {"im_id":3,"image":"airplane", "selected":"False"},
+            {"im_id":4,"image":"tower", "selected":"False"}
+                 
+    ]
+}
+
+

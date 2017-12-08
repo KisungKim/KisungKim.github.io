@@ -21,12 +21,16 @@ li {
     padding : 15px 14px 15px 10px;
     text-align:left;
 }
-.gEl img, #addlist img {
+/* .g1 {
+    display : inline-block;
+    background-color: #CACEE8;
+} */
+#list img, #addlist img {
     position : relative;
     height : 40px;
     width : 40px; 
 } 
-.name {
+#name {
     display:inline-block;
     position:relative;
     top:-7px;    
@@ -50,7 +54,7 @@ li {
     width:420px;
     margin-left:10px;
 }
-.count {
+#count {
     position: relative;
     top:-7px;
     color : gray;

@@ -1,0 +1,274 @@
+<html>
+        <head>
+            <!-- 스타일을 지정 -->
+            <link type="text/css" rel="stylesheet" href="index.css">
+            <link type="text/css" rel="stylesheet" href="task.css">            
+            <link type="text/css" rel="stylesheet" href="cellar.css">
+        </head>
+        <body>
+            <!-- 레이아웃을 지정 -->
+            <section id="grouplist_main">
+            <div id="wholelist">
+                <div id="main">
+                    <ul id="list"></ul>
+                </div>
+                <div id="addlist">
+                    <img src="images/plus.png"/>
+                    <span class="plusfont">새 목록</span>
+                </div>
+            </div>
+            </section>
+            
+            <section id="tasklist_main">
+            <div id="tasklist">
+                    <div id="header">
+                        <div id="showgroup">&#9776</div>
+                        <div id="gname"></div>
+                        <div id="addtask">&#166</div>
+                    </div>
+                    <div id="content">
+                        <ul id="tlist"></ul>
+                    </div>
+                    <div id="taddlist">
+                        <img />
+                    </div>
+            </div>
+            </section>
+
+            <section id="cellar_main">
+                <div id="cellar">
+                    <div id="back">뒤로가기</div>
+                    <div id="cellarName"></div>
+                    <div id="ccontent"></div>
+                    <input type="textarea"/>
+                </div>
+            </section>
+
+            <!-- JQUERY -->
+            <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous">
+            </script>
+
+            <!-- 동작을 지정 -->
+            <script>
+            // 목록아이콘이미지, 컬러선택함수, 목록리스트함수
+            var sources = 
+                {
+                    sun_icon:"images/sun.png",
+                    home_icon:"images/home.png",
+                    list_b:"images/list_b.png",
+                    list_o:"images/list_o.png",
+                    list_g:"images/list_g.png",
+                    add_b:"images/add_b.png",
+                    add_g:"images/add_g.png",
+                    add_o:"images/add_o.png",
+                    due:"images/due.png",
+                    due_out:"images/outdated.png",
+                    alarm:"images/alarm.png",
+                    alarm_check:"images/alarm_selected.png",
+                    repeat:"images/repeat.png",
+                    repeat_check:"images/repeat_selected.png"
+                }
+            var listco = function(color) {
+                switch(color) {
+                    case "blue"  : return sources.list_b;
+                    case "red"   : return sources.list_o;
+                    case "green" : return sources.list_g;
+                }
+            }
+            var addco = function(color) {
+                switch(color) {
+                    case "blue"  : return sources.add_b;
+                    case "red"   : return sources.add_o;
+                    case "green" : return sources.add_g;
+                }
+            }
+            var make_glist = function(imgsrc,ary,ary_num) {
+                return '<li id="'+ary[ary_num].id+'">'+
+                            '<img src="'+imgsrc+'"/>'+
+                            '<span id="name">' +ary[ary_num].name+'</span>'+
+                            '<span id="count">'+ary[ary_num].count+'</span>'+
+                       '</li>';
+            }
+            var infoary = function(i, arr) {
+                            var infoli = "";
+                            var infoary = 
+                                [arr[i].ttodo, arr[i].talarm, arr[i].tdue, arr[i].trepeat, arr[i].tmemo];
+                            if (infoary[0] == undefined) return infoli;
+                            else {
+                                var first = false;
+                                for (var k=0;k<infoary.length;k++) {
+                                    if (infoary[k] === "") continue;
+                                    else {
+                                        if (first === false) {
+                                            infoli += '<li class="first">'+infoary[k]+'</li>'
+                                            first = true
+                                        }
+                                        else infoli += '<li>'+infoary[k]+'</li>'
+                                    }
+                                }
+                                return infoli;
+                            }
+                        }
+            var make_tlist = function(arr_num,arr, tdcnt, f){
+                li = 
+                '<li class="tasks">'+
+                '<div class="'+tdcnt+'">'+
+                    '<input name="done" type="checkbox">'+
+                    '<div class="detail">'+
+                        '<div class="name">'+arr[arr_num].tname+'</div>'+
+                        '<ul id="info">' + f(arr_num, arr) + '</ul>'+
+                    '</div>' + 
+                '</div>' + 
+                '</li>'   
+                return li;
+            }
+            //불러오는 json주소
+            var grouplist_json = "https://kisungkim.github.io/swe3020/todo/json/groupList.json";    
+            var groupadd_json  = "https://kisungkim.github.io/swe3020/todo/json/groupAdd.json";
+            var tasklist_json = "https://kisungkim.github.io/swe3020/todo/json/taskList.json";
+            var taskadd_json = "https://kisungkim.github.io/swe3020/todo/json/taskAdd.json";
+            //grouplist구현
+
+            var showgroup = function () {
+            $("#tasklist_main").hide();
+            $.get(grouplist_json, function(result, status) {
+                try {
+                    if (result.result != "ok") throw "JSON //groupList.json// data Error"
+                    else {
+                        var arr = result.data;
+                        var list = make_glist(sources.sun_icon ,arr,0)+
+                                   make_glist(sources.home_icon,arr,1); 
+                        var licnt = 2;
+                        for(var i=2;i<arr.length;i++) {
+                            list +=make_glist(listco(arr[i].color),arr,i);
+                            licnt ++;
+                        };
+                        $("#list").html(list);
+                        $("#list li").click(function() {
+                            $("#tasklist_main").show();
+                            showTask(this.id, arr[this.id-1].name, arr[this.id-1].color);
+                            });
+                        $("#addlist").click(function() {
+                            var listname = prompt("새 목록", "제목 없는 목록");
+                            if (listname != null) {
+                                $.get(groupadd_json,{"id":licnt, "name":listname},function(result, status) {
+                                    try {
+                                        if (result.result != "ok") throw "JSON data //groupAdd.json// Error"
+                                        else {
+                                            result.data[0].name = listname;
+                                            $("#list").append(make_glist(listco(result.data[0].color),result.data,0));
+                                        }
+                                    } 
+                                    catch(e) { console.log(e) }
+                                })
+                            }
+                        })
+                    }
+                }  
+                catch(e) { console.log(e); }
+            });
+            }
+            //tasklist구현
+            var showTask = function(gid, name, color) {
+                $("#grouplist_main").hide();
+                $.get(tasklist_json, function(data, status) {
+                try {
+                    if (data.result != "ok") throw "JSON data //taskList.json// Error";
+                    else {
+                        $("#gname").text(name);
+                        $("#header").css('background-color',color);
+                        $("#taddlist img").attr('src',addco(color));
+                        var arr = data.data;
+                        var tdcnt = 0;
+                        var li = "";
+                        for (var i=0;i<arr.length;i++) {
+                            if (arr[i].id == gid) {
+                                tdcnt ++;
+                                li += make_tlist(i, arr, tdcnt, infoary);   
+                            }                                 
+                        }
+                        $("#tlist").html(li);
+                        $(".tasks input").click(function() {
+                            if ("none solid rgb(0, 0, 0)"==$(this.nextSibling.firstChild).css('text-decoration')) {
+                                $(this.nextSibling.firstChild).css('text-decoration','line-through')
+                                $.get(tasklist_json, {"tdone":"true"});
+                            }
+                            else {
+                                $(this.nextSibling.firstChild).css('text-decoration', 'none');
+                                $.get(tasklist_json, {"tdone":"false"});
+                            }
+                        })
+                        $("#tlist .tasks .detail").click(function(e) {
+                            $("#tasklist_main").hide();
+                            $("#cellar_main").show();
+                            var mymsg = arr[$(e.currentTarget).parent()[0].className-1];            
+                            var temp = ['todo','alarm','due','repeat'];
+                            var msg = [
+                                (mymsg.ttodo=="")  ? 
+                                    ["나의 하루에 추가", sources.sun_icon] : [mymsg.ttodo, sources.sun_icon],
+                                (mymsg.talarm=="") ? 
+                                    ["미리 알림", sources.alarm] : [mymsg.talarm, sources.alarm_check],
+                                (mymsg.tdue=="")   ? 
+                                    ["기한 설정", sources.due] : [mymsg.tdue, sources.due],
+                                (mymsg.tdue == "") ? ["",""] : (
+                                      (mymsg.trepeat == "") ? 
+                                        ["반복", sources.repeat] : [mymsg.trepeat, sources.repeat_check]),
+                            ]
+                            $("#cellarName").html(mymsg.tname);
+                            var s = "";
+                            for (var i=0;i<temp.length;i++) {
+                                s += 
+                                     '<div class="'+temp[i]+'">'+
+                                        '<img src="'+msg[i][1]+'"/>'+ msg[i][0]+
+                                      '</div>'
+                            }
+                            $("#ccontent").html(s);
+                            $.get(grouplist_json, function(result, status) {
+                                var arr = result.data;
+                                $("#back").click(function() {
+                                    $("#cellar_main").hide();
+                                    $("#tasklist_main").show();
+                                    showTask(mymsg.id, arr[mymsg.id-1].name, arr[mymsg.id-1].color);
+                                })
+                            })
+                        })
+                        $("#showgroup").click(function() { 
+                            $("#grouplist_main").show();
+                            showgroup();
+                             })
+                        $("#taddlist").click(function(){
+                            var tdname = prompt("새 할일", "제목 없는 할일");
+                            if (tdname != null) {
+                                $.get(taskadd_json,{"id":gid, "name":tdname, "tid":tdcnt},function(result, status) {
+                                    try {
+                                        if (result.result != "ok") throw "JSON data //groupAdd.json// Error"
+                                        else {
+                                            result.data[0].tname = tdname;
+                                            tdcnt++;
+                                            $("#tlist").append(make_tlist(0,result.data,tdcnt,infoary));
+                                        }
+                                    } 
+                                    catch(e) { console.log(e) }
+                                })
+                            }
+                        }) 
+                    }
+                } catch(e) {
+                    console.log(e);
+                }
+            })
+        }
+        showgroup();
+            </script>
+        </body>
+    </html>
+    
+    
+    
+    
+    
+    
+    

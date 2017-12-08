@@ -1,0 +1,14 @@
+{
+    "result":"ok",
+    "data":[
+        { 
+            "id":4,
+            "name":"교육 및 수업",
+            "color":"green",
+            "icon":"li",
+            "count":1
+        }
+    ]
+}
+
+

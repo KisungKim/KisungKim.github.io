@@ -1,0 +1,36 @@
+{
+    "result":"ok",
+    "data":[
+        { 
+            "id":1,
+            "name":"오늘 할 일",
+            "color":"blue",
+            "icon":"sun",
+            "count":2
+        },
+        { 
+            "id":2,
+            "name":"To-Do",
+            "color":"blue",
+            "icon":"home",
+            "count":0
+        },
+        { 
+            "id":3,
+            "name":"비사이드",
+            "color":"red",
+            "icon":"li",
+            "count":0
+        },
+        { 
+            "id":4,
+            "name":"교육 및 수업",
+            "color":"green",
+            "icon":"li",
+            "count":0
+        }
+        
+    ]
+}
+
+

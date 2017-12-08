@@ -1,0 +1,96 @@
+<html>
+        <head>
+            <!-- 스타일을 지정 -->
+            <link type="text/css" rel="stylesheet" href="task.css">            
+        </head>
+        <body>
+            <!-- 레이아웃을 지정 -->
+            <div id="tasklist">
+                    <div id="header"></div>
+                    <div id="content">
+                        <ul id="tlist"></ul>
+                    </div>
+            </div>
+                <!-- JQUERY -->
+            <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous">
+            </script>
+
+            <!-- js파일 불러오기 -->
+            <script src="main.js"></script>
+
+            <!-- 동작을 지정 -->
+            <script>
+            //grouplist구현
+            mainId = location.search.substr(4,5);
+            function renderTheme($data) {
+            //css 수정이 필요합니다*********** 및 스타일전환필요
+                $("#header").css('background-color',$data.data[mainId].color)
+                            .append(
+                                '<div id="showgroup">&#9776</div>'+
+                                '<div id="gname">'+$data.data[mainId].name+'</div>'+
+                                '<div id="edit">&#166</div>'+
+                                '<div id="taddlist">'+colored_icon("taskIcon",$data.data[mainId].color)+'</div>'
+                            )
+            }
+            function renderList($data) {
+            //css 수정이 필요합니다***********
+                var data = $data.data;
+                for (var i=0;i<data.length;i++) {
+                    var item = data[i];
+                    if (item.id == mainId) {
+                        $("#tlist").append (
+                            '<li class="tEl">'+
+                                '<input name="done" type="checkbox"/>'+
+                                '<div class="detail">'+item.name+'</div>'+
+                                '<ul id="info">'+( item.ttodo == undefined ? "" : infoary(item) )+'</ul>'+
+                            '</li>'
+                        )
+                    }
+                }
+            }
+            function drawInfo(item) {
+                var first = false;
+                var li = "";
+                var info = [item.ttodo, item.talarm, item.tdue, item.trepeat, item.tmemo];
+                for (var k=0;k<info.length;k++) {
+                    if (info[k] == "") continue;
+                    else {
+                        if(!first) li += '<li class="first">'+info[k]+'</li>';
+                        else       li += '<li>'+info[k]+'</li>';
+                    }
+                    return li;
+                }
+            }
+            var init = (function() {
+                var isInited = false;
+                return function init() {
+                    if(isInited) return;
+                    else isInited = true;
+                    network("taskTheme", renderTheme)
+                    $('#taddlist').click(function() {
+                        var listname = prompt("새 할 일", "제목 없는 할 일");
+                        listname = listname.trim();
+                        if (!listname && listname.length < 3) {
+                            alert("3자 이상 할 일 이름을 적어주세요!");
+                            return;
+                        }
+                        network("taskAdd", renderList, listname);
+                    })
+                    network("taskList", renderList);
+                }
+            })();
+
+            //tasklist구현
+            </script>
+        </body>
+    </html>
+    
+    
+    
+    
+    
+    
+    

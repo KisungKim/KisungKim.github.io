@@ -1,0 +1,59 @@
+@font-face {
+    font-family:NanumGothic;
+    src:url("https://fonts.googleapis.com/earlyaccess/nanumgothic.css")format("css");
+}
+ul {
+    -webkit-padding-start: 0px;    
+}
+#tasklist {
+    display:inline-block;
+    height: 1000px;
+    width : 1000px;
+}
+#header {
+    display:inline-block;
+    padding:20px;
+    font-size : 40px;
+    color : white;    
+}
+#header div {
+    display:inline-block;
+}
+#gname {
+    padding:0 500px 0 100px;
+} 
+#tlist {
+    position : relative;
+    display:inline-block;
+    list-style:none;
+    margin : 0px;
+    height : 900px;
+}
+#tlist .tasks {
+    border-bottom:solid gray 1px;
+    width:870px;
+    height:100px;
+}
+.tasks input {
+    width: 50px;
+    height : 50px;
+}
+.tasks .name {
+    font-size:30px;
+}
+.detail {
+    margin-left:30px; 
+    display:inline-block;
+}
+#info li{ 
+    display:inline-block;
+    list-style-type: disc;
+    margin-left:10px;
+}
+#taddlist img{
+    position:relative;
+    left:700px;
+    display:inline-block;
+    height: 100px;
+    width:100px;
+}

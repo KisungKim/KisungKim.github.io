@@ -1,0 +1,14 @@
+{
+    "result":"ok",
+    "data":[
+        { 
+            "id":4,
+            "name":"목록 이름을 변경하였습니다",
+            "color":"green",
+            "icon":"li",
+            "count":1
+        }
+    ]
+}
+
+

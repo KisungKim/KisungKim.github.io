@@ -3,7 +3,7 @@
     "data":[
         { 
             "id":5,
-            "name":"default",
+            "name":"",
             "color":"blue",
             "icon":"li",
             "count":0
