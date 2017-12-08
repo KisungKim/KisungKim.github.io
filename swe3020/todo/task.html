@@ -62,9 +62,10 @@
             function drawInfo(item) {
                 var first = false;
                 var li = "";
+                
                 var info = [item.ttodo, item.talarm, item.tdue, item.trepeat, item.tmemo];
+                console.log(info);
                 for (var k=0;k<info.length;k++) {
-                    console.log(info[k])
                     if (info[k] == "") continue;
                     else {
                         if(!first) {
