@@ -18,7 +18,7 @@
             "id":1,
             "tid":2, 
             "tname":"컴퓨터활용능력",
-            "tdone":"False",
+            "tdone":"false",
             
             "ttodo":"",
             "talarm":"",

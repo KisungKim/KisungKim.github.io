@@ -64,10 +64,16 @@
                 var li = "";
                 var info = [item.ttodo, item.talarm, item.tdue, item.trepeat, item.tmemo];
                 for (var k=0;k<info.length;k++) {
+                    console.log(info[k])
                     if (info[k] == "") continue;
                     else {
-                        if(!first) li += '<li class="first">'+info[k]+'</li>';
-                        else       li += '<li>'+info[k]+'</li>';
+                        if(!first) {
+                            li += '<li class="first">'+info[k]+'</li>';
+                            first = true;
+                        }
+                        else {
+                            li += '<li>'+info[k]+'</li>';
+                        }       
                     }
                     return li;
                 }
