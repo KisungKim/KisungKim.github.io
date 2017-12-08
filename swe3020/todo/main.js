@@ -31,7 +31,6 @@ var FILES = {
 }
 function network(command, end, arg) {
     switch(command) {
-        case "taskTheme":
         case "taskList":
             $.get(URLS.prefix+URLS.taskList, end);
             break;
@@ -45,6 +44,7 @@ function network(command, end, arg) {
             // end(data)
             // console.log(data)
             break;
+        case "taskTheme":            
         case "groupList":
            $.get(URLS.prefix+URLS.groupList, end);
            //end(data)
