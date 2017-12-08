@@ -1,7 +1,7 @@
 var URLS = {
     //톰캣은? prefix:"localhost:8080"
     prefix:"https://kisungkim.github.io/swe3020/todo/",
-	groupAdd:"json/groupAdd.json",
+    groupAdd:"json/groupAdd.json",
     groupList:"json/groupList.json",
     taskAdd:"json/taskAdd.json",
     taskList:"json/taskList.json",
