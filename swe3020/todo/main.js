@@ -36,8 +36,7 @@ function network(command, end, arg) {
             $.get(URLS.prefix+URLS.taskList, end);
             break;
         case "eachList": 
-            location.href = URLS.prefix + URLS.eachList +
-                "?id="  + encodeURIComponent(arg);
+            location.href = URLS.prefix + URLS.eachList + "?id="  + encodeURIComponent(arg);
             break;
         case "groupAdd":
             $.get(URLS.prefix+URLS.groupAdd, {"name":arg}, end);

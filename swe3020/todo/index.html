@@ -26,18 +26,20 @@
 
             <!-- 동작을 지정 -->
             <script>
+                console.log("check");
             //grouplist구현
                function renderList($data) {
 //css 수정이 필요합니다***********
                     var data = $data.data;
-                    console.log("test");
+                    console.log("tdst");
+                    console.log(data);
                     $("#list").append (
-                        '<li class="gEl" onclick="network(\'eachList\', null, \''+[data[0].id, data[0].name]+'\')">'+
+                        '<li class="gEl" onclick="network(\'eachList\', null, \''+data[0].id+'\')">'+
                             '<img src="'+FILES.groupIcon.sun_icon+'"/>'+
                             '<span class="name">'+data[0].name+'</span>'+
                             '<span class="count">'+data[0].count+'</span>'+
                         '</li>'+
-                        '<li class="gEl" onclick="network(\'eachList\', null, \''+[data[1].id, data[1].name]+'\')">'+
+                        '<li class="gEl" onclick="network(\'eachList\', null, \''+data[1].id+'\')">'+
                             '<img src="'+FILES.groupIcon.home_icon+'"/>'+
                             '<span class="name">'+data[1].name+'</span>'+
                             '<span class="count">'+data[1].count+'</span>'+
@@ -46,7 +48,7 @@
                     for (var i=2;i<data.length;i++) {
                         item = data[i];
                         $("#list").append (
-                            '<li class="gEl" onclick="network(\'eachList\', null, \''+[item.id, item.name]+'\')">'+
+                            '<li class="gEl" onclick="network(\'eachList\', null, \''+item.id+'\')">'+
                                 '<img src="'+colored_icon("groupIcon",item.color)+'"/>'+
                                 '<span class="name">'+item.name+'</span>'+
                                 '<span class="count">'+item.count+'</span>'+
