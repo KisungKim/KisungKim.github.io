@@ -40,7 +40,7 @@
                                 '<div id="showgroup">&#9776</div>'+
                                 '<div id="gname">'+data.name+'</div>'+
                                 '<div id="edit">&#166</div>'+
-                                '<div id="taddlist">'+colored_icon("taskIcon",data.color)+'</div>'
+                                '<img src="'+colored_icon("taskIcon",data.color)+'"/>'
                             )
             }
             function renderList($data) {
@@ -76,8 +76,8 @@
                             li += '<li>'+info[k]+'</li>';
                         }       
                     }
-                    return li;
                 }
+                return li;
             }
             var init = (function() {
                 var isInited = false;
@@ -85,7 +85,7 @@
                     if(isInited) return;
                     else isInited = true;
                     network("taskTheme", renderTheme)
-                    $('#taddlist').click(function() {
+                    $('#header img').click(function() {
                         var listname = prompt("새 할 일", "제목 없는 할 일");
                         listname = listname.trim();
                         if (!listname && listname.length < 3) {
