@@ -48,13 +48,14 @@ ul {
 #info {
     display:inline-block;
     padding-left:50px;
+
 }
 #info li{ 
     display:inline-block;
     list-style-type: disc;
     margin-left:10px;
 }
-#tasklist img{
+#new{
     position:absolute;
     left:700px;
     display:inline-block;

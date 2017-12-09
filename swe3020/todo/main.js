@@ -5,7 +5,8 @@ var URLS = {
     groupList:"json/groupList.json",
     taskAdd:"json/taskAdd.json",
     taskList:"json/taskList.json",
-	eachList:"task.html",
+    eachList:"task.html",
+    group:"index.html"
   
 };
 
@@ -38,7 +39,7 @@ function network(command, end, arg) {
             location.href = URLS.prefix + URLS.eachList + "?id="  + encodeURIComponent(arg);
             break;
         case "group":
-            location.href = URLS.prefix + URLS.groupList;
+            location.href = URLS.prefix + URLS.group;
             break;
         case "groupAdd":
             $.get(URLS.prefix+URLS.groupAdd,{"name":arg}, end);
@@ -52,6 +53,9 @@ function network(command, end, arg) {
            $.get(URLS.prefix+URLS.groupList, end);
            //end(data)
            break;
+        case "toggleComplete":
+            $.get(URLS.prefix+URLS.taskList, {"tid":arg.tid, "tdone":arg.tdone}, end);
+            break;
         case "taskAdd":
             $.get(URLS.prefix+URLS.groupList, {"tname":arg},end);
             break;

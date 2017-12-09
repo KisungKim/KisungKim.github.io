@@ -24,7 +24,7 @@
             <!-- 동작을 지정 -->
             <script>
             //grouplist구현
-            mainId = location.search.substr(4);
+            var mainId = location.search.substr(4), current;
             function renderTheme($data) {
             //css 수정이 필요합니다*********** 및 스타일전환필요
                 var data = $data.data;
@@ -38,17 +38,18 @@
                                 '<div id="showgroup" onclick="network(\'group\')">&#9776</div>'+
                                 '<div id="gname">'+data.name+'</div>'+
                                 '<div id="edit">&#166</div>')
-                $("#tasklist").append('<img src="'+colored_icon("taskIcon",data.color)+'"/>')
+                $("#tasklist").append('<img id="new" src="'+colored_icon("taskIcon",data.color)+'"/>')
             }
             function renderList($data) {
             //css 수정이 필요합니다***********
-                var data = $data.data;
+                current = $data.data;
                 for (var i=0;i<data.length;i++) {
-                    var item = data[i];
+                    var item = current[i];
                     if (item.id == mainId) {
                         $("#tlist").append (
                             '<li class="tEl">'+
-                                '<input name="done" type="checkbox"/>'+
+                                '<input name="done" type="checkbox" onclick="toggleComplete('+i+')" '+
+                                    'style="text-decoration:'+(item.tdone?"line-through":"none")+'"/>'+
                                 '<div class="detail">'+item.tname+'</div>'+
                                 '<ul id="info">'+( item.ttodo == undefined ? "" : drawInfo(item) )+'</ul>'+
                             '</li>'
@@ -74,6 +75,10 @@
                 }
                 return li;
             }
+            function toggleComplete(i) {
+	            var item = current[i];
+	            network("toggleComplete", renderList, {tid:item.tid, tdone:!item.tdone});
+            }
             var init = (function() {
                 var isInited = false;
                 return function init() {
@@ -89,7 +94,6 @@
                         }
                         network("taskAdd", renderList, listname);
                     })
-                    $('#showgroup').click (function() { network("group") })
                     network("taskList", renderList);
                 }
             })();
