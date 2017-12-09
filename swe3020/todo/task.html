@@ -28,16 +28,14 @@
             function renderTheme($data) {
             //css 수정이 필요합니다*********** 및 스타일전환필요
                 var data = $data.data;
-                console.log(data)
                 for (var i=0;i<data.length;i++) {
                     if (mainId == data[i].id) {
                         data = data[i]; break;
                     } 
                 }
-                console.log(data)
                 $("#header").css('background-color',data.color)
                             .append(
-                                '<div id="showgroup">&#9776</div>'+
+                                '<div id="showgroup" onclick="network(\'group\')">&#9776</div>'+
                                 '<div id="gname">'+data.name+'</div>'+
                                 '<div id="edit">&#166</div>')
                 $("#tasklist").append('<img src="'+colored_icon("taskIcon",data.color)+'"/>')
@@ -61,9 +59,7 @@
             function drawInfo(item) {
                 var first = false;
                 var li = "";
-                
                 var info = [item.ttodo, item.talarm, item.tdue, item.trepeat, item.tmemo];
-                console.log(info);
                 for (var k=0;k<info.length;k++) {
                     if (info[k] == "") continue;
                     else {
@@ -84,7 +80,7 @@
                     if(isInited) return;
                     else isInited = true;
                     network("taskTheme", renderTheme)
-                    $('#header img').click(function() {
+                    $('#tasklist img').click(function() {
                         var listname = prompt("새 할 일", "제목 없는 할 일");
                         listname = listname.trim();
                         if (!listname && listname.length < 3) {
@@ -93,10 +89,10 @@
                         }
                         network("taskAdd", renderList, listname);
                     })
+                    $('#showgroup').click (function() { network("group") })
                     network("taskList", renderList);
                 }
             })();
-            console.log("rebuild");
             init();
             //tasklist구현
             </script>
