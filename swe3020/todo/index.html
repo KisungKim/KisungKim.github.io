@@ -30,6 +30,7 @@
                function renderList($data) {
 //css 수정이 필요합니다***********
                     var data = $data.data;
+                    $("#list").empty();
                     console.log(data[0].id);
                     $("#list").append (
                         '<li class="gEl" onclick="network(\'eachList\', null, \''+data[0].id+'\')">'+
@@ -66,7 +67,7 @@
                                 alert("3자 이상 목록이름을 적어주세요!");
                                 return;
                             }
-                            network("addList", renderList, listname);
+                            network("groupAdd", renderList, listname);
                         })
                         network("groupList", renderList);
                     }
