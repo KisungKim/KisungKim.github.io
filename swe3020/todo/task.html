@@ -37,20 +37,35 @@
                             .append(
                                 '<div id="showgroup" onclick="network(\'group\')">&#9776</div>'+
                                 '<div id="gname">'+currentG.name+'</div>'+
-                                '<div id="edit" onclick="renderEdit(this)">&#166</div>')
+                                '<div id="edit" onclick="renderEdit()">&#166</div>')
                 $("#tasklist").append('<img id="new" src="'+colored_icon("taskIcon",currentG.color)+'"/>')
             }
-            function renderEdit(this) {
-                $(this).append(
+            function renderEdit() {
+                $("#edit").append(
                     '<div class="select">'+
                         '<div class="editName" onclick="network(\"editName\",\"renderEditName\")">목록이름 바꾸기</div>'+
-                        '<div class="sort" onclick="network(\"editName\",\"renderSort\")">정렬</div>'+
+                        '<div class="sort" onclick="network(\"sorting\",\"renderSort\")">정렬</div>'+
                         '<div class="editTheme onclick="network(\"editTheme\",\"renderEditTheme\")"">테마변경</div>'+
-                        '<div class="hide" onclick="network(\"hide\",\"renderHide\")">완료된 할 일 숨기기</div>'+
+                        '<div class="hide" onclick="network(\"showing\",\"renderHide\")">완료된 할 일 숨기기</div>'+
                         '<div class="send">보내기</div>'+
                         '<div class="delete" onclick="network(\"delete\",\"null\",'+currentG.id+')">목록삭제</div>'+    
                     '</div>'
                 )
+            }
+            function renderEditName() {
+
+            }
+            function renderSort(){
+
+            }
+            function renderEditTheme() {
+
+            }
+            function renderHide() {
+
+            }
+            function renderRemove() {
+                
             }
             function renderList($data) {
             //css 수정이 필요합니다***********

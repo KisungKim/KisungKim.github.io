@@ -7,6 +7,7 @@ var URLS = {
     taskList:"json/taskList.json",
     eachList:"task.html",
     group:"index.html",
+    
     groupSort:"json/groupSort.json",
 	groupTheme:"json/groupTheme.json",
 	groupShow:"json/groupShow.json",
