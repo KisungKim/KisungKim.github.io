@@ -6,7 +6,11 @@ var URLS = {
     taskAdd:"json/taskAdd.json",
     taskList:"json/taskList.json",
     eachList:"task.html",
-    group:"index.html"
+    group:"index.html",
+    groupSort:"json/groupSort.json",
+	groupTheme:"json/groupTheme.json",
+	groupShow:"json/groupShow.json",
+	groupRemove:"json/groupRemove.json"
   
 };
 
@@ -60,6 +64,21 @@ function network(command, end, arg) {
             $.get(URLS.prefix+URLS.groupList, {"tname":arg},end);
             break;
 
+        case "editName" :
+			$.get(URLS.prefix+URLS.groupEdit, {"name":arg}, end);
+			break;
+		case "sorting" :
+			$.get(URLS.prefix+URLS.groupSort, end);
+			break;
+		case "editTheme" :
+			$.get(URLS.prefix+URLS.groupTheme, end);
+			break;
+		case "showing" :
+			$.get(URLS.prefix+URLS.groupShow, {"id":arg}, end);
+			break;
+		case "delete" :
+			$.get(URLS.prefix+URLS.groupRemove, {"id":arg}, end);
+			break;
         default : throw "invalid command";         
     }
 }

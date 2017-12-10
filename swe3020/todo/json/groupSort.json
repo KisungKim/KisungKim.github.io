@@ -1,34 +1,30 @@
 {
     "result":"ok",
     "data":[
-        { 
+        {
             "id":1,
-            "name":"오늘 할 일",
-            "color":"blue",
-            "icon":"sun",
-            "count":0
+            "tid":2, 
+            "tname":"컴퓨터활용능력",
+            "tdone":"false",
+            
+            "ttodo":"",
+            "talarm":"",
+            "tdue":"내일까지",            
+            "trepeat":"",            
+            "tmemo":"hi"
         },
-        { 
-            "id":2,
-            "name":"To-Do",
-            "color":"blue",
-            "icon":"home",
-            "count":0
-        },
-        { 
-            "id":3,
-            "name":"비사이드",
-            "color":"red",
-            "icon":"li",
-            "count":1
-        },
-        { 
-            "id":4,
-            "name":"교육 및 수업",
-            "color":"green",
-            "icon":"li",
-            "count":1
-        }     
+        {
+            "id":1,
+            "tid":1, 
+            "tname":"셀러확인",
+            "tdone":"true",
+                        
+            "ttodo":"",
+            "talarm":"09:00에 미리 알리기",
+            "tdue":"",
+            "trepeat":"",            
+            "tmemo":"hello"
+        }  
     ]
 }
 
