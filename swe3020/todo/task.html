@@ -49,6 +49,7 @@
                     }
                     network("taskAdd", renderList, listname);
                 });
+                network("taskList", renderList);
             }
             function renderEdit() {
                 $("#edit").append(
@@ -160,7 +161,6 @@
                     if(isInited) return;
                     else isInited = true;
                     network("taskTheme", renderTheme);    
-                    network("taskList", renderList);
                 }
             })();
             init();
