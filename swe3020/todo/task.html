@@ -60,7 +60,7 @@
                     alert("3자 이상 할 일 이름을 적어주세요!");
                     return;
                 }
-                network("editName", null , {"id":mainId, "name":newname});
+                network("editName", {"id":mainId, "name":newname});
                 init();
             }
             function pageSort(){
