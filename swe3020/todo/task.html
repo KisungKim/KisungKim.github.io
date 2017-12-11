@@ -40,6 +40,15 @@
                                 '<div id="gname">'+currentG.name+'</div>'+
                                 '<div id="edit" onclick="renderEdit()">목록수정</div>')
                 $("#tasklist").append('<img id="new" src="'+colored_icon("taskIcon",currentG.color)+'"/>')
+                $('#new').click(function() {
+                    var listname = prompt("새 할 일", "제목 없는 할 일");
+                    listname = listname.trim();
+                    if (!listname && listname.length < 3) {
+                        alert("3자 이상 할 일 이름을 적어주세요!");
+                        return;
+                    }
+                    network("taskAdd", renderList, listname);
+                });
             }
             function renderEdit() {
                 $("#edit").append(
@@ -150,16 +159,7 @@
                 return function init() {
                     if(isInited) return;
                     else isInited = true;
-                    network("taskTheme", renderTheme)
-                    $('#new').click(function() {
-                        var listname = prompt("새 할 일", "제목 없는 할 일");
-                        listname = listname.trim();
-                        if (!listname && listname.length < 3) {
-                            alert("3자 이상 할 일 이름을 적어주세요!");
-                            return;
-                        }
-                        network("taskAdd", renderList, listname);
-                    })
+                    network("taskTheme", renderTheme);    
                     network("taskList", renderList);
                 }
             })();
