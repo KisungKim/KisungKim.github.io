@@ -76,8 +76,9 @@
             function renderEditTheme($data) {
                 var data = $data.data
                 function isSame(name) {
-                    if (name != data.name) return network("selectTheme", null, {"selected":!data.selected});
-                    network("selectTheme", null, {"selected":!name.selected}) 
+                    if (name != data.name) network("selectTheme", null, {"selected":!data.selected});
+                    network("selectTheme", null, {"selected":!name.selected}) ;
+                }
                 $("body").append (
                     '<form action="isSame(name)">'+
                         '<input type="radio" name="blue" value="blue">' +
