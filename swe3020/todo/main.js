@@ -7,7 +7,7 @@ var URLS = {
     taskList:"json/taskList.json",
     eachList:"task.html",
     group:"index.html",
-    
+
     groupSort:"json/groupSort.json",
 	groupTheme:"json/groupTheme.json",
 	groupShow:"json/groupShow.json",
@@ -66,14 +66,17 @@ function network(command, end, arg) {
             break;
 
         case "editName" :
-			$.get(URLS.prefix+URLS.groupEdit, {"name":arg}, end);
+			$.get(URLS.prefix+URLS.groupEdit, {"id":arg.id, "name":arg.newName}, end);
 			break;
 		case "sorting" :
-			$.get(URLS.prefix+URLS.groupSort, end);
+			$.get(URLS.prefix+URLS.groupSort, {"now":arg}, end);
 			break;
 		case "editTheme" :
 			$.get(URLS.prefix+URLS.groupTheme, end);
-			break;
+            break;
+        case "selectTheme":
+            $.get(URLS.prefix+URLS.groupTheme, {"selected":arg}, end)
+            break;
 		case "showing" :
 			$.get(URLS.prefix+URLS.groupShow, {"id":arg}, end);
 			break;

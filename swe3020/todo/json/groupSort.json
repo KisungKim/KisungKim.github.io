@@ -2,29 +2,7 @@
     "result":"ok",
     "data":[
         {
-            "id":1,
-            "tid":2, 
-            "tname":"컴퓨터활용능력",
-            "tdone":"false",
-            
-            "ttodo":"",
-            "talarm":"",
-            "tdue":"내일까지",            
-            "trepeat":"",            
-            "tmemo":"hi"
-        },
-        {
-            "id":1,
-            "tid":1, 
-            "tname":"셀러확인",
-            "tdone":"true",
-                        
-            "ttodo":"",
-            "talarm":"09:00에 미리 알리기",
-            "tdue":"",
-            "trepeat":"",            
-            "tmemo":"hello"
-        }  
+            "now":"제목" }
     ]
 }
 

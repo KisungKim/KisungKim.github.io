@@ -43,7 +43,7 @@
             function renderEdit() {
                 $("#edit").append(
                     '<div class="select">'+
-                        '<div class="editName" onclick="network(\"editName\",\"renderEditName\")">목록이름 바꾸기</div>'+
+                        '<div class="editName" onclick="renderEditName()">목록이름 바꾸기</div>'+
                         '<div class="sort" onclick="network(\"sorting\",\"renderSort\")">정렬</div>'+
                         '<div class="editTheme onclick="network(\"editTheme\",\"renderEditTheme\")"">테마변경</div>'+
                         '<div class="hide" onclick="network(\"showing\",\"renderHide\")">완료된 할 일 숨기기</div>'+
@@ -53,13 +53,47 @@
                 )
             }
             function renderEditName() {
-
+                var newname = prompt("목록이름 바꾸기",currentG.name);
+                newname = newname.trim();
+                if (!newname && newname.length < 3) {
+                    alert("3자 이상 할 일 이름을 적어주세요!");
+                    return;
+                }
+                network("editName", null , {"id":mainId, "name":newName})
+                init();
             }
             function renderSort(){
-
+                $("body").append (
+                    '<div class="sortPage" onclick="hide()">'+
+                        '<div onclick="network(\"sorting\",\"renderSort\",\"제목\")">제목</div>'+
+                        '<div onclick="network(\"sorting\",\"renderSort\",\"기한\")">기한</div>'+
+                        '<div onclick="network(\"sorting\",\"renderSort\",\"만든날짜\")">만든날짜</div>'+
+                        '<div onclick="network(\"sorting\",\"renderSort\",\"완료됨\")">완료됨</div>'+
+                        '<div onclick="network(\"sorting\",\"renderSort\",\"나의 하루에 추가됨\")">나의 하루에 추가됨</div>'+
+                    '</div>');   
+                network("taskList", renderList);
             }
-            function renderEditTheme() {
-
+            function renderEditTheme($data) {
+                var data = $data.data
+                function isSame(name) {
+                    if (name != data.name) return network("selectTheme", null, {"selected":!data.selected});
+                    network("selectTheme", null, {"selected":!name.selected}) 
+                $("body").append (
+                    '<form action="isSame(name)">'+
+                        '<input type="radio" name="blue" value="blue">' +
+                        '<input type="radio" name="peach" value="peach">'+
+                        '<input type="radio" name="purple" value="purple">'+
+                        '<input type="radio" name="green" value="green">'+
+                        '<input type="radio" name="sky" value="sky">'+
+                    '</form>'+
+                    '<form action="isSame(name)">'+
+                        '<input type="radio" name="mountain" value="mountain">' +
+                        '<input type="radio" name="travel" value="travel">'+
+                        '<input type="radio" name="cabin" value="cabin">'+
+                        '<input type="radio" name="airplane" value="airplane">'+
+                        '<input type="radio" name="tower" value="tower">'+
+                    '</form>'
+                )
             }
             function renderHide() {
 
@@ -102,7 +136,7 @@
             }
             function toggleComplete(i) {
 	            var item = current[i];
-	            network("toggleComplete", renderList, {tid:item.tid, tdone:!item.tdone});
+	            network("toggleComplete", renderList, {"tid":item.tid, "tdone":!item.tdone});
             }
             var init = (function() {
                 var isInited = false;

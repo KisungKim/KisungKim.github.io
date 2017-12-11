@@ -1,17 +1,17 @@
 {
     "result":"ok",
     "data":[
-            {"co_id":0,"color":"blue", "selected":"True"},
-            {"co_id":1,"color":"peach", "selected":"False"},
-            {"co_id":2,"color":"purple", "selected":"False"},
-            {"co_id":3,"color":"green", "selected":"False"},
-            {"co_id":4,"color":"sky", "selected":"False"},
+            {"co_id":0,"color":"blue", "selected":"true"},
+            {"co_id":1,"color":"peach", "selected":"false"},
+            {"co_id":2,"color":"purple", "selected":"false"},
+            {"co_id":3,"color":"green", "selected":"false"},
+            {"co_id":4,"color":"sky", "selected":"false"},
             
-            {"im_id":0,"image":"mountain", "selected":"True"},
-            {"im_id":1,"image":"travel", "selected":"False"},
-            {"im_id":2,"image":"cabin", "selected":"False"},
-            {"im_id":3,"image":"airplane", "selected":"False"},
-            {"im_id":4,"image":"tower", "selected":"False"}
+            {"im_id":0,"image":"mountain", "selected":"true"},
+            {"im_id":1,"image":"travel", "selected":"false"},
+            {"im_id":2,"image":"cabin", "selected":"false"},
+            {"im_id":3,"image":"airplane", "selected":"false"},
+            {"im_id":4,"image":"tower", "selected":"false"}
                  
     ]
 }
