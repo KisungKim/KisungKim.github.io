@@ -59,11 +59,11 @@
                     alert("3자 이상 할 일 이름을 적어주세요!");
                     return;
                 }
-                network("editName", null , {"id":mainId, "name":newName})
+                network("editName", null , {"id":mainId, "name":newname});
                 init();
             }
             function pageSort(){
-                $("body").append (
+                $("#edit").append (
                     '<div class="sortPage" onclick="hide()">'+
                         '<div onclick="network(\"sorting\",\"renderSort\",\"제목\")">제목</div>'+
                         '<div onclick="network(\"sorting\",\"renderSort\",\"기한\")">기한</div>'+
@@ -79,7 +79,7 @@
                     if (name != data.name) network("selectTheme", null, {"selected":!data.selected});
                     network("selectTheme", null, {"selected":!name.selected}) ;
                 }
-                $("body").append (
+                $("#edit").append (
                     '<form action="isSame(name)">'+
                         '<input type="radio" name="blue" value="blue">' +
                         '<input type="radio" name="peach" value="peach">'+
@@ -94,7 +94,8 @@
                         '<input type="radio" name="airplane" value="airplane">'+
                         '<input type="radio" name="tower" value="tower">'+
                     '</form>'
-                )
+                );
+                init();
             }
             function renderHide($data) {
                 var data = $data.data;
@@ -109,6 +110,7 @@
             }
             function renderList($data) {
             //css 수정이 필요합니다***********
+                $("#edit").empty();
                 $("#tlist").empty();
                 current = $data.data;
                 for (var i=0;i<current.length;i++) {
@@ -150,7 +152,7 @@
                     if(isInited) return;
                     else isInited = true;
                     network("taskTheme", renderTheme)
-                    $('#tasklist img').click(function() {
+                    $('#new').click(function() {
                         var listname = prompt("새 할 일", "제목 없는 할 일");
                         listname = listname.trim();
                         if (!listname && listname.length < 3) {
