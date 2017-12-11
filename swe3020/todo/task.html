@@ -44,11 +44,11 @@
                 $("#edit").append(
                     '<div class="select">'+
                         '<div class="editName" onclick="renderEditName()">목록이름 바꾸기</div>'+
-                        '<div class="sort" onclick="network(\"sorting\",\"renderSort\")">정렬</div>'+
+                        '<div class="sort" onclick="pageSort()">정렬</div>'+
                         '<div class="editTheme onclick="network(\"editTheme\",\"renderEditTheme\")"">테마변경</div>'+
-                        '<div class="hide" onclick="network(\"showing\",\"renderHide\")">완료된 할 일 숨기기</div>'+
+                        '<div class="hide" onclick="network(\"taskList\",\"renderHide\")">완료된 할 일 숨기기</div>'+
                         '<div class="send">보내기</div>'+
-                        '<div class="delete" onclick="network(\"delete\",\"null\",'+currentG.id+')">목록삭제</div>'+    
+                        '<div class="delete" onclick="pageRemove()",'+currentG.id+')">목록삭제</div>'+    
                     '</div>'
                 )
             }
@@ -62,7 +62,7 @@
                 network("editName", null , {"id":mainId, "name":newName})
                 init();
             }
-            function renderSort(){
+            function pageSort(){
                 $("body").append (
                     '<div class="sortPage" onclick="hide()">'+
                         '<div onclick="network(\"sorting\",\"renderSort\",\"제목\")">제목</div>'+
@@ -95,11 +95,16 @@
                     '</form>'
                 )
             }
-            function renderHide() {
-
+            function renderHide($data) {
+                var data = $data.data;
+                for (var i=0;data.length;i++) {
+                    if (data[i].tdone) network("showing", null, data[i].tid);
+                }
+                network("taskList",renderList);
             }
-            function renderRemove() {
-
+            function pageRemove() {
+                network("delete", null , {"id":mainId});
+                network("group");
             }
             function renderList($data) {
             //css 수정이 필요합니다***********

@@ -78,7 +78,7 @@ function network(command, end, arg) {
             $.get(URLS.prefix+URLS.groupTheme, {"selected":arg}, end)
             break;
 		case "showing" :
-			$.get(URLS.prefix+URLS.groupShow, {"id":arg}, end);
+			$.get(URLS.prefix+URLS.groupShow, {"tid":arg}, end);
 			break;
 		case "delete" :
 			$.get(URLS.prefix+URLS.groupRemove, {"id":arg}, end);
