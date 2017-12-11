@@ -66,7 +66,7 @@ function network(command, end, arg) {
             break;
 
         case "editName" :
-			$.get(URLS.prefix+URLS.groupEdit, {"id":arg.id, "name":arg.newName}, end);
+			$.get(URLS.prefix+URLS.groupEdit, {"id":arg.id, "name":arg.name}, end);
 			break;
 		case "sorting" :
 			$.get(URLS.prefix+URLS.groupSort, {"now":arg}, end);
