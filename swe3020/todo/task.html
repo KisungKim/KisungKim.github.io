@@ -27,7 +27,8 @@
             var mainId = location.search.substr(4), current, currentG;
             function renderTheme($data) {
             //css 수정이 필요합니다*********** 및 스타일전환필요
-                var data = $data.data;
+            $("#header").empty();    
+            var data = $data.data;
                 for (var i=0;i<data.length;i++) {
                     if (mainId == data[i].id) {
                         currentG = data[i]; break;
@@ -37,7 +38,7 @@
                             .append(
                                 '<div id="showgroup" onclick="network(\'group\')">&#9776</div>'+
                                 '<div id="gname">'+currentG.name+'</div>'+
-                                '<div id="edit" onclick="renderEdit()">&#166</div>')
+                                '<div id="edit" onclick="renderEdit()"></div>')
                 $("#tasklist").append('<img id="new" src="'+colored_icon("taskIcon",currentG.color)+'"/>')
             }
             function renderEdit() {
@@ -71,7 +72,7 @@
                         '<div onclick="network(\"sorting\",\"renderSort\",\"완료됨\")">완료됨</div>'+
                         '<div onclick="network(\"sorting\",\"renderSort\",\"나의 하루에 추가됨\")">나의 하루에 추가됨</div>'+
                     '</div>');   
-                network("taskList", renderList);
+                init();
             }
             function renderEditTheme($data) {
                 var data = $data.data
@@ -102,15 +103,13 @@
                 for (var i=0;data.length;i++) {
                     if (data[i].tdone) network("showing", null, data[i].tid);
                 }
-                network("taskList",renderList);
+                init();
             }
             function pageRemove() {
                 network("delete", null , {"id":mainId});
                 network("group");
             }
             function renderList($data) {
-            //css 수정이 필요합니다***********
-                $("#edit").empty();
                 $("#tlist").empty();
                 current = $data.data;
                 for (var i=0;i<current.length;i++) {
